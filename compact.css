@@ -1,0 +1,12 @@
+/* Remove both the Workspace app rail and its bottom-right show-panel tab. */
+html.compactdocs-hide-right .companion-app-switcher-container,
+html.compactdocs-hide-right .companion-collapser,
+html.compactdocs-hide-right .companion-collapser-button,
+html.compactdocs-hide-right [aria-label="Show side panel"],
+html.compactdocs-hide-right [data-tooltip="Show side panel"],
+html.compactdocs-hide-right [aria-label="Hide side panel"],
+html.compactdocs-hide-right [data-tooltip="Hide side panel"] {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
