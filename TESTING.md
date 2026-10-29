@@ -4,9 +4,9 @@ Tested in Helium with signed-in Google Docs. Document text was not edited. The T
 
 ## Live checks
 
-- Pages → pageless → pages → pageless: layout follows the mode. Fixed the paged-only offset incorrectly applying to pageless.
+- Pages → pageless → pages → pageless: layout follows the mode. Manual zoom is preserved. Follow-up 1.2.1 verifies pageless content/ruler coordinates and removes its retained collapsed-tabs gutter.
 - Pageless reload: native 100% zoom is preserved and both sidebar controls remain hidden.
-- Viewports 640px and 1400px: pageless text reflows; paged auto-fit responds to resizing. At 640px, pageless showed a small 14px horizontal overflow; wide view had none. No extra sidebar gutter was present.
+- Viewports 640px and 1400px: pageless text reflows; paged auto-fit responds to resizing. The initial pageless implementation showed 14px overflow at 640px. After the 1.2.1 gutter fix with Full text width, the narrow screenshot had no visible horizontal scrollbar. No extra sidebar gutter was present.
 - Manual 75% zoom followed by resizing: preserved.
 - Manual 75% in pageless followed by switching to pages: preserved after fixing zoom tracking across modes.
 - Reopen tabs via View: sidebar remains open until manually collapsed.
@@ -24,3 +24,7 @@ Run `node build-styles.mjs` after changing compact.css. Run syntax checks with `
 ## Still unverified
 
 Non-English interfaces and RTL, browser-level zoom, wide tables/images, comments/revision-history sidebars, printing, and offline reconnect. Current native-control labels target English. Those cases need dedicated documents or sessions before claiming support.
+
+## Follow-up: pageless left space
+
+Selected native View → Text width → Full on the TL;DR document. The previous pageless exception left a 73px collapsed-tabs offset. Removed that exception and checked that content and horizontal ruler share x=0 at a narrow viewport, while text retains Docs’ normal padding. Verified reload and narrow reflow, then reset the viewport override. Native text width is a user view preference; the extension does not force it on other documents.

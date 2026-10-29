@@ -35,6 +35,6 @@ Version 1.0 hid inner controls but left the outer right rail reserving width. Do
 
 Layout styles are embedded with the content script and restored if removed from the page. This avoids a script running without its matching layout rules. Documents opening with a saved Fit zoom are normalized to a known view scale before fitting. Regression tests cover style restoration, Fit startup, manual zoom, and manifest script order. Both reported document layouts were checked in Helium without editing document content.
 
-## Version 1.2.0
+## Version 1.2.1
 
-Pageless mode keeps its native scroll viewport and zoom rather than applying the paged-layout offset. Manual zoom choices persist across a switch between pageless and pages. See [TESTING.md](TESTING.md) for live checks, remaining limitations, and the six regression tests.
+Pageless mode preserves native zoom while reclaiming the collapsed tabs gutter. For the widest pageless layout, choose View → Text width → Full; this is a native view preference. Manual zoom choices persist across a switch between pageless and pages. See [TESTING.md](TESTING.md) for live checks, remaining limitations, and the six regression tests.
