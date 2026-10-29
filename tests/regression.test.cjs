@@ -63,7 +63,7 @@ test('saved Fit zoom is normalized before fitting; manual zoom is respected', ()
 });
 test('manifest injects embedded styles before the content script', () => {
   const manifest=JSON.parse(readFileSync('manifest.json','utf8'));
-  assert.deepEqual(manifest.content_scripts[0].js,['styles.js','content.js']);
+  assert.deepEqual(manifest.content_scripts[0].js,['styles.js','hover.js','content.js']);
 });
 
 test('pageless preserves native zoom even when a stale page canvas exists', () => {

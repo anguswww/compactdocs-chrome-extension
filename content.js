@@ -21,7 +21,7 @@
   }
 
   function fitPage() {
-    if (!settings.fitToWindow || manualZoom || normalizingZoom) return;
+    if (!settings.fitToWindow || manualZoom || normalizingZoom || (typeof compactDocsHover !== 'undefined' && compactDocsHover.isOpen())) return;
     const input = document.querySelector('#zoomSelect input');
     const page = document.querySelector('.canvas-first-page');
     const editor = document.querySelector('#docs-editor');
@@ -47,7 +47,7 @@
     const baseWidth = page.getBoundingClientRect().width / (parseFloat(value) / 100);
     const leftReserve = settings.collapseTabs && sidebar?.classList.contains('navigation-widget-hidden')
       ? 0 : parseFloat(document.querySelector('.left-sidebar-container')?.style.width || '0');
-    const available = parseFloat(editor.style.width) - leftReserve - 48;
+    const available = parseFloat(document.documentElement.style.getPropertyValue('--compactdocs-editor-width') || editor.style.width) - leftReserve - 48;
     if (!baseWidth || available < 100) return;
     const target = `${Math.max(25, Math.min(200, Math.floor(available / baseWidth * 100)))}%`;
     lastZoom = value;
@@ -122,8 +122,9 @@
         }
       }
     }
-    const editorWidth = document.querySelector('#docs-editor')?.style.width;
-    if (editorWidth && root.style.getPropertyValue('--compactdocs-editor-width') !== editorWidth) {
+    const fullWidth = settings.hideRightPanel ? document.querySelector('#docs-chrome')?.getBoundingClientRect().width : 0;
+    const editorWidth = fullWidth ? `${fullWidth}px` : document.querySelector('#docs-editor')?.style.width;
+    if (editorWidth && !(typeof compactDocsHover !== 'undefined' && compactDocsHover.isOpen()) && root.style.getPropertyValue('--compactdocs-editor-width') !== editorWidth) {
       root.style.setProperty('--compactdocs-editor-width', editorWidth);
       changed = true;
     }
@@ -135,6 +136,7 @@
         changed = true;
       }
     }
+    if (typeof compactDocsHover !== 'undefined') compactDocsHover.update(settings, activate);
     if (changed) window.dispatchEvent(new Event('resize'));
     fitPage();
   }

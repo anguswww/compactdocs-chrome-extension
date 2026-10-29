@@ -16,7 +16,7 @@ A small Chrome Manifest V3 extension for more Google Docs editing room, especial
 3. Choose **Load unpacked** and select this folder.
 4. Reload any open Google Docs documents. Pin CompactDocs to access its settings.
 
-You can reopen document tabs through Google Docs’ View menu; the extension collapses them only once per page load. Turn off the right-panel setting in the popup to restore access to Calendar, Keep, and other panel apps.
+Hover over the left edge button to reveal the full document-tabs panel, or the right edge button to reveal the Google side panel. The panels overlay the document and dismiss when you leave them. You can also use Tab/click to open and Escape to close. You can still reopen tabs through Google Docs’ View menu; the extension collapses them only once per page load. Turn off the right-panel setting in the popup to restore access to Calendar, Keep, and other panel apps.
 
 ## Scope and limitations
 
@@ -24,7 +24,7 @@ Targets `https://docs.google.com/document/d/*`. The collapse control is detected
 
 ## Development
 
-After editing compact.css, run `node build-styles.mjs` to refresh the embedded styles. Run `node --test tests/regression.test.cjs`, `node --check content.js`, and `node --check popup.js`, then reload the unpacked extension. In Docs, check initial collapse, manual reopening, right-panel removal, all popup settings, and narrow window resizing.
+After editing compact.css, run `node build-styles.mjs` to refresh the embedded styles. Run `node --test tests/*.test.cjs`, `node --check content.js`, and `node --check popup.js`, then reload the unpacked extension. In Docs, check initial collapse, manual reopening, right-panel removal, all popup settings, and narrow window resizing.
 
 
 ## Why 1.1 saves more space
@@ -38,3 +38,8 @@ Layout styles are embedded with the content script and restored if removed from 
 ## Version 1.2.1
 
 Pageless mode preserves native zoom while reclaiming the collapsed tabs gutter. For the widest pageless layout, choose View → Text width → Full; this is a native view preference. Manual zoom choices persist across a switch between pageless and pages. See [TESTING.md](TESTING.md) for live checks, remaining limitations, and the six regression tests.
+
+
+## Version 1.3.0
+
+The compact-sidebar switches now enable hover overlays: the left edge reveals the full native tabs/outline panel and the right edge reveals the native app rail and selected app. Fixed overlays and a stable editor viewport keep document position and zoom unchanged. Small edge buttons support hover, click, keyboard focus, and Escape. The extension keeps the native panels collapsed for layout purposes and never forces the Google Docs text-width preference.
