@@ -1,12 +1,37 @@
-/* Remove both the Workspace app rail and its bottom-right show-panel tab. */
+@media screen {
+/* The outer wrapper reserves space even if the inner app switcher is hidden. */
+html.compactdocs-hide-right .docs-companion-app-switcher-container,
 html.compactdocs-hide-right .companion-app-switcher-container,
+html.compactdocs-hide-right .companion-collapser-button-container,
 html.compactdocs-hide-right .companion-collapser,
-html.compactdocs-hide-right .companion-collapser-button,
-html.compactdocs-hide-right [aria-label="Show side panel"],
-html.compactdocs-hide-right [data-tooltip="Show side panel"],
-html.compactdocs-hide-right [aria-label="Hide side panel"],
-html.compactdocs-hide-right [data-tooltip="Hide side panel"] {
+html.compactdocs-hide-right .companion-collapser-button {
   display: none !important;
   width: 0 !important;
   min-width: 0 !important;
+}
+
+/* A collapsed tabs sidebar still has a 73px minimum for the floating switcher.
+   Remove that width too; Docs measures this container when laying out pages. */
+html.compactdocs-compact-tabs .left-sidebar-container:has(.navigation-widget-hidden) {
+  width: 0 !important;
+  min-width: 0 !important;
+  transition: none !important;
+}
+html.compactdocs-compact-tabs [class~="appsKixClientUiWizMiniChapterSwitcherSurfaceMiniChapterSwitcherSurface"],
+html.compactdocs-compact-tabs .miniChapterSwitcherContainerView {
+  display: none !important;
+}
+
+/* Docs keeps the collapsed rail's width in its canvas layout even after the
+   sidebar is zero-width. Expand and offset the *whole scroll viewport*, not
+   individual pages: canvases, selection overlays and caret stay together. */
+html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) .kix-appview-editor,
+html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) #kix-horizontal-ruler-container {
+  margin-left: calc(-1 * var(--compactdocs-tabs-gutter, 73px));
+  width: 100%;
+}
+html.compactdocs-compact-tabs #docs-editor:has(.navigation-widget-hidden) {
+  width: calc(var(--compactdocs-editor-width, 100%) + var(--compactdocs-tabs-gutter, 73px)) !important;
+}
+
 }

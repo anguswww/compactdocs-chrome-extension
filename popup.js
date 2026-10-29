@@ -1,4 +1,4 @@
-const defaults = { collapseTabs: true, hideRightPanel: true };
+const defaults = { collapseTabs: true, hideRightPanel: true, fitToWindow: true };
 chrome.storage.local.get(defaults, settings => {
   for (const key of Object.keys(defaults)) {
     const input = document.getElementById(key);
