@@ -24,9 +24,13 @@ Targets `https://docs.google.com/document/d/*`. The collapse control is detected
 
 ## Development
 
-No build step. Run `node --check content.js` and `node --check popup.js`, then reload the unpacked extension. In Docs, check initial collapse, manual reopening, right-panel removal, all popup settings, and narrow window resizing.
+After editing compact.css, run `node build-styles.mjs` to refresh the embedded styles. Run `node --test tests/regression.test.cjs`, `node --check content.js`, and `node --check popup.js`, then reload the unpacked extension. In Docs, check initial collapse, manual reopening, right-panel removal, all popup settings, and narrow window resizing.
 
 
 ## Why 1.1 saves more space
 
 Version 1.0 hid inner controls but left the outer right rail reserving width. Docs also retains a collapsed tabs gutter in its canvas layout. Version 1.1 activates the native collapse controls, offsets and expands the scroll viewport with its overlays together, and compensates for Docs’ built-in Fit calculation with a local numeric zoom. The sidebar widths are read from Docs’ own layout and updated on resize.
+
+## Version 1.1.1
+
+Layout styles are embedded with the content script and restored if removed from the page. This avoids a script running without its matching layout rules. Documents opening with a saved Fit zoom are normalized to a known view scale before fitting. Regression tests cover style restoration, Fit startup, manual zoom, and manifest script order. Both reported document layouts were checked in Helium without editing document content.

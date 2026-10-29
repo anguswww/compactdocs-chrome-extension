@@ -8,6 +8,7 @@
   let initialized = false;
   let lastZoom = null;
   let manualZoom = false;
+  let normalizingZoom = false;
   const collapsedRightControls = new WeakSet();
   function activate(control) {
     // Google Closure buttons activate on mouseup, rather than DOM click().
@@ -20,14 +21,22 @@
   }
 
   function fitPage() {
-    if (!settings.fitToWindow || manualZoom) return;
+    if (!settings.fitToWindow || manualZoom || normalizingZoom) return;
     const input = document.querySelector('#zoomSelect input');
     const page = document.querySelector('.canvas-first-page');
     const editor = document.querySelector('#docs-editor');
     if (!input || !page || !editor) return;
     const value = input.value;
-    if (!/^\d+(?:\.\d+)?%$/.test(value)) return;
     if (lastZoom !== null && value !== lastZoom) { manualZoom = true; return; }
+    if (value === 'Fit' && lastZoom === null) {
+      normalizingZoom = true;
+      lastZoom = '100%';
+      setViewZoom(lastZoom);
+      // Let Docs render at a known scale before measuring custom paper sizes.
+      setTimeout(() => { normalizingZoom = false; schedule(); }, 250);
+      return;
+    }
+    if (!/^\d+(?:\.\d+)?%$/.test(value)) return;
     const sidebar = document.querySelector('.navigation-widget');
     if (settings.collapseTabs && !sidebar?.classList.contains('navigation-widget-hidden')) return;
     const baseWidth = page.getBoundingClientRect().width / (parseFloat(value) / 100);
@@ -39,6 +48,11 @@
     lastZoom = value;
     if (value === target) return;
     lastZoom = target;
+    setViewZoom(target);
+  }
+  function setViewZoom(target) {
+    const input = document.querySelector('#zoomSelect input');
+    if (!input) return;
     // Change only the local view zoom using Docs' normal zoom input.
     const focused = document.activeElement;
     input.focus();
@@ -49,15 +63,22 @@
     }
     const combo = document.querySelector('#zoomSelect');
     if (combo?.getAttribute('aria-expanded') === 'true') {
-      const toolbar = document.querySelector('#docs-toolbar-wrapper');
-      if (toolbar) activate(toolbar);
+      activate(document.body);
     }
-    if (focused instanceof HTMLElement) focused.focus({ preventScroll: true });
+    input.blur();
+    if (focused !== input && focused instanceof HTMLElement) focused.focus({ preventScroll: true });
   }
   function apply() {
     if (!initialized) return;
     const root = document.documentElement;
     let changed = false;
+    if (!document.getElementById('compactdocs-layout-style')) {
+      const style = document.createElement('style');
+      style.id = 'compactdocs-layout-style';
+      style.textContent = COMPACTDOCS_CSS;
+      (document.head || root).appendChild(style);
+      changed = true;
+    }
     for (const [name, enabled] of [
       ['compactdocs-hide-right', settings.hideRightPanel],
       ['compactdocs-compact-tabs', settings.collapseTabs]
@@ -132,7 +153,7 @@
     schedule();
   });
   window.addEventListener('resize', schedule);
-  new MutationObserver(schedule).observe(document.body, {
+  new MutationObserver(schedule).observe(document.documentElement, {
     childList: true, subtree: true, attributes: true,
     attributeFilter: ['class', 'style', 'aria-label', 'data-tooltip']
   });
