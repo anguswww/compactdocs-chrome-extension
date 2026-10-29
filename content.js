@@ -25,9 +25,14 @@
     const input = document.querySelector('#zoomSelect input');
     const page = document.querySelector('.canvas-first-page');
     const editor = document.querySelector('#docs-editor');
-    if (!input || !page || !editor) return;
+    if (!input || !editor) return;
     const value = input.value;
     if (lastZoom !== null && value !== lastZoom) { manualZoom = true; return; }
+    if (document.body.classList.contains('docs-body-pageless')) {
+      lastZoom = value;
+      return;
+    }
+    if (!page) return;
     if (value === 'Fit' && lastZoom === null) {
       normalizingZoom = true;
       lastZoom = '100%';

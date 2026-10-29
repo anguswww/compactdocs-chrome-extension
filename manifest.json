@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CompactDocs",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Reclaim Google Docs editing space by collapsing document tabs and hiding the right side-panel rail.",
   "permissions": [
     "storage"

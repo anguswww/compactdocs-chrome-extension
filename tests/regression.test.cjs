@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { readFileSync } = require('node:fs');
 const vm = require('node:vm');
 
-function boot(zoom = '100%') {
+function boot(zoom = '100%', options = {}) {
   const nodes = new Map();
   const frames = [], timers = [];
   let observer;
@@ -20,14 +20,16 @@ function boot(zoom = '100%') {
   const props = new Map(), classes = new Set();
   root.style = {getPropertyValue: k => props.get(k), setProperty: (k,v) => props.set(k,v)};
   root.classList = {contains: k => classes.has(k), toggle: (k,v) => v ? classes.add(k) : classes.delete(k)};
+  const body = new Element();
+  body.classList = {contains: k => k === 'docs-body-pageless' && options.pageless};
   const head = {appendChild: n => nodes.set(n.id,n)};
   const doc = {
-    documentElement: root, head, body: new Element(), activeElement: null,
+    documentElement: root, head, body, activeElement: null,
     getElementById: id => nodes.get(id), createElement: () => new Element(),
     querySelectorAll: () => [],
     querySelector: selector => ({
-      '#zoomSelect input': input, '.canvas-first-page': new Element(),
-      '#docs-editor': {style:{width:'768px'}},
+      '#zoomSelect input': input, '.canvas-first-page': options.noEditor ? null : new Element(),
+      '#docs-editor': options.noEditor ? null : {style:{width:'768px'}},
       '.navigation-widget': {classList:{contains:()=>true}}
     })[selector]
   };
@@ -62,4 +64,25 @@ test('saved Fit zoom is normalized before fitting; manual zoom is respected', ()
 test('manifest injects embedded styles before the content script', () => {
   const manifest=JSON.parse(readFileSync('manifest.json','utf8'));
   assert.deepEqual(manifest.content_scripts[0].js,['styles.js','content.js']);
+});
+
+test('pageless preserves native zoom even when a stale page canvas exists', () => {
+  const app = boot('125%', {pageless:true});
+  app.observer();
+  assert.equal(app.input.value,'125%');
+  assert.equal(app.timers.length,0);
+});
+test('preview and loading screens without an editor are safe', () => {
+  const app = boot('Fit', {noEditor:true});
+  app.observer();
+  assert.equal(app.input.value,'Fit');
+  assert.equal(app.timers.length,0);
+});
+
+test('manual pageless zoom survives a later switch to pages', () => {
+  const options = {pageless:true};
+  const app = boot('100%',options);
+  app.input.value='75%';app.observer();
+  options.pageless=false;app.observer();
+  assert.equal(app.input.value,'75%');
 });

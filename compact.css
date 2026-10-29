@@ -25,12 +25,12 @@ html.compactdocs-compact-tabs .miniChapterSwitcherContainerView {
 /* Docs keeps the collapsed rail's width in its canvas layout even after the
    sidebar is zero-width. Expand and offset the *whole scroll viewport*, not
    individual pages: canvases, selection overlays and caret stay together. */
-html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) .kix-appview-editor,
-html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) #kix-horizontal-ruler-container {
+html.compactdocs-compact-tabs body:not(.docs-body-pageless) #kix-appview:has(.navigation-widget-hidden) .kix-appview-editor,
+html.compactdocs-compact-tabs body:not(.docs-body-pageless) #kix-appview:has(.navigation-widget-hidden) #kix-horizontal-ruler-container {
   margin-left: calc(-1 * var(--compactdocs-tabs-gutter, 73px));
   width: 100%;
 }
-html.compactdocs-compact-tabs #docs-editor:has(.navigation-widget-hidden) {
+html.compactdocs-compact-tabs body:not(.docs-body-pageless) #docs-editor:has(.navigation-widget-hidden) {
   width: calc(var(--compactdocs-editor-width, 100%) + var(--compactdocs-tabs-gutter, 73px)) !important;
 }
 
