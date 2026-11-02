@@ -22,13 +22,13 @@ html.compactdocs-compact-tabs .miniChapterSwitcherContainerView {
   display: none !important;
 }
 
-/* Docs keeps the collapsed rail's width in its canvas layout even after the
-   sidebar is zero-width. Expand and offset the *whole scroll viewport*, not
-   individual pages: canvases, selection overlays and caret stay together. */
-html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) .kix-appview-editor,
-html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) #kix-horizontal-ruler-container {
-  margin-left: calc(-1 * var(--compactdocs-tabs-gutter, 73px));
-  width: calc(100% + var(--compactdocs-tabs-gutter, 73px));
+/* Docs reserves the collapsed rail inside its canvas layout. Reclaim it at
+   the appview, the common coordinate origin used for pointer hit testing,
+   ruler, canvases and carets. Moving only the editor moves the drawing but
+   leaves hit testing at the old origin, placing clicks one gutter to the left. */
+html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) {
+  left: calc(-1 * var(--compactdocs-tabs-gutter, 73px)) !important;
+  width: calc(100% + var(--compactdocs-tabs-gutter, 73px)) !important;
 }
 html.compactdocs-compact-tabs #docs-editor:has(.navigation-widget-hidden) {
   width: var(--compactdocs-editor-width, 100%) !important;

@@ -1,5 +1,28 @@
 # Verification — 2026-10-29
 
+## Follow-up — 2026-11-02: collapsed gutter and pointer coordinates
+
+The initial editor-only correction failed in live Docs: it retained the internal
+73px rail inset at `left: 0`. Moving only the editor left instead made clicks
+land 73px left of the pointer. The synthetic fixture did not catch this because
+Docs uses the ancestor appview as its pointer coordinate origin.
+
+The final correction offsets and expands `#kix-appview`, keeping its editor,
+ruler, canvases and carets together. Gutter-width tracking remains in use.
+Verified the two user-provided paged and pageless documents in preview using the
+final CSS and local source scripts with a settings shim. At an 800px viewport,
+a click at x=300 placed the caret at x=301 in pageless and x=298 in pages
+(character snapping), instead of x=226 with the editor-only correction. No text
+was typed or document formatting changed.
+
+Checked final CSS at 640px: pageless stays at 100% and reflows, paged auto-fit
+selects 74% with page bounds x=19.7 to 607.7, and neither editor has horizontal
+overflow. Both retain identical editor geometry while the tabs overlay is open.
+At 800px the paged page fits at 94%, with bounds x=20.7 to 767.2. Docs' native
+text padding and printed page margins remain. Build, all 13 tests, and syntax
+checks pass. This verifies source behavior, not packaged extension installation
+or chrome.storage integration. Preview test tabs were closed afterward.
+
 Tested in Helium with signed-in Google Docs. Document text was not edited. The TL;DR document was left in pageless mode at 100% zoom, with all CompactDocs options enabled. Temporary viewport overrides were reset and the preview test tab was closed.
 
 ## Live checks
