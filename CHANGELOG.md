@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.1 (unreleased)
+## 1.4.1
 
 - Use Google Docs' native Fit mode in narrow windows instead of calculated percentage zoom.
 - Preserve manual numeric zoom and restore the previous zoom when automatic Fit is disabled or the window widens.
