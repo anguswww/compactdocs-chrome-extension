@@ -1,17 +1,16 @@
 # Screenshot provenance
 
-The existing images do not show the intended left-tiled workflow and should be replaced before publication. Capture a sharp desktop view with Google Docs tiled on the left and another window on the right, then capture relevant panel and settings details at a legible size. Do not upscale these existing images as a substitute for a higher-resolution capture.
+The current store plates use genuine captures of the installed 1.4.0 extension in a dedicated Chrome for Testing profile. The previous source-injected demonstration images were replaced. The user supplied and approved the document for public marketing screenshots. No document text or page settings were edited. Captures contain page content only, without browser chrome or a signed-in account avatar.
 
-The first three 1280 × 800 PNGs in `screenshots/` show the user-approved Google Docs document in a browser preview with no browser chrome. The document text and Google account avatar are visible. The user approved this document for public screenshots. The right panel capture shows the app rail and does not open Keep or display its contents.
+- `screenshots/01-side-by-side.png`: a narrow Docs view positioned on the left, with a short explanation of side-by-side work.
+- `screenshots/02-reclaim-space.png`: default Docs and CompactDocs at the same 780 px viewport width.
+- `screenshots/03-hover-tabs.png`: the genuine rounded 1.4.0 native tabs overlay.
+- `screenshots/04-fit-your-window.png`: a 620 px viewport, automatically fitted at 70% view zoom.
+- `screenshots/05-your-settings.png`: actual installed extension popup, captured at 2× device pixel ratio and cropped to its three settings.
+- `alternatives/06-hover-access.png`: closed/open comparison with an annotation identifying the invisible full-height edge target. The green edge line is an annotation, not an extension control.
 
-The preview profile did not have CompactDocs installed. For these captures, the final 1.4.0 `styles.js`, `hover.js`, and `content.js` were executed directly in the live document page with a minimal local storage shim supplying the extension's default settings. This is a source-injected demonstration, not a test of the packaged extension or its permissions. It leaves the document content unchanged and is cleared on page reload.
+Each plate is a 1280 × 800 RGB PNG. The first five are the default upload set; the alternative can replace 03. The Chrome Web Store accepts up to five screenshots.
 
-- `01-compact-editor.png`: compact editor with panels closed.
-- `02-document-tabs.png`: tabs revealed from the left edge.
-- `03-side-panel.png`: app rail revealed from the right edge.
+Live checks confirmed 89% auto-fit at 780 px and 70% at 620 px, identical page bounds and zoom before/after hover, pointer-exit dismissal, keyboard focus and Escape, and all three popup switches. Fresh anonymous captures do not verify signed-in Workspace apps. The right-panel feature is represented in accurate copy and the actual setting, not a fabricated signed-in screenshot. See `../TESTING.md` for historical checks and remaining manual cases.
 
-The page and ruler stay aligned across the three captures. The document was temporarily set to 100% zoom for capture and the preview zoom was restored afterward.
-
-`04-settings.png` renders the final `popup.html` markup and CSS in a blank preview tab with the actual icon embedded as a data URL. The default checkboxes were set to checked without running `popup.js`. A neutral background, shadow, and 1.3× scale were added for presentation. It is a source-rendered illustration, not an installed extension popup capture. Review all images at full size before uploading.
-
-`demo.html` is a separate synthetic development fixture. It uses sample text and a simplified page, and loads the extension CSS and hover script. It is not Google Docs and was not used for the screenshots.
+`demo.html` remains a synthetic local development fixture, not a Google Docs screenshot or evidence of installed-package verification. Marketing images do not replace final browser testing of the release ZIP.

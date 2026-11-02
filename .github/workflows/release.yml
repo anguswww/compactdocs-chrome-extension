@@ -1,0 +1,44 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Check tag and package versions
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const manifest = JSON.parse(readFileSync('manifest.json', 'utf8'));
+          const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+          if (!/^\d+\.\d+\.\d+$/.test(manifest.version) || pkg.version !== manifest.version || process.env.GITHUB_REF_NAME !== `v${manifest.version}`) {
+            throw new Error('Tag, manifest, and package versions must match a stable x.y.z release');
+          }
+          NODE
+      - name: Test and package
+        run: npm run package
+      - name: Ensure generated styles are current
+        run: git diff --exit-code -- styles.js
+      - name: Generate checksum
+        run: |
+          VERSION="$(node -p 'require("./manifest.json").version')"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          (cd dist && sha256sum "compactdocs-$VERSION.zip" > SHA256SUMS)
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME"             "dist/compactdocs-$VERSION.zip" dist/SHA256SUMS             --verify-tag --latest             --title "CompactDocs $VERSION"             --generate-notes             --notes "Download and extract the extension ZIP, then choose Load unpacked at chrome://extensions. This release is not a Chrome Web Store installation. See the README for setup, usage, and privacy information."

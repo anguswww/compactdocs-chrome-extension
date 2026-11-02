@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#4f46e5"/>
-  <text x="32" y="32" dy="0.35em" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="26" font-weight="600" fill="#ffffff">CC</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect x="16" y="16" width="96" height="96" rx="22" fill="#18765B"/><rect x="47" y="34" width="34" height="60" rx="5" fill="white"/><path d="M54 51h19M54 63h19M54 75h12" stroke="#18765B" stroke-width="4" stroke-linecap="round"/><path d="m28 55 11 9-11 9zm72 0-11 9 11 9z" fill="#D8ED87"/></svg>

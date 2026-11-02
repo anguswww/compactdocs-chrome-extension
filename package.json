@@ -2,6 +2,10 @@
   "name": "compactdocs",
   "version": "1.4.0",
   "private": true,
+  "license": "MIT",
+  "repository": "github:anguswww/compactdocs-chrome-extension",
+  "homepage": "https://anguswww.github.io/compactdocs-chrome-extension/",
+  "engines": { "node": ">=24" },
   "description": "Compact panels for Google Docs",
   "scripts": {
     "build": "node build-styles.mjs",

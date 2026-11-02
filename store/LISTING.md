@@ -11,7 +11,7 @@ Tile Google Docs to the left and keep another window alongside it. CompactDocs g
 
 Tile your browser window using your operating system’s window controls; CompactDocs adapts the Docs layout inside it.
 
-CompactDocs collapses the document tabs and right side panel to reclaim space. Hover anywhere along the left or right edge of the window to reveal the panels over your document. The edge targets stay invisible until focused with the keyboard. You can also click or focus a button and press Escape to close the panel.
+CompactDocs collapses the document tabs and right side panel to reclaim space. Hover anywhere along the left or right edge of the window to reveal the panels over your document. The edge targets stay invisible until focused with the keyboard. You can also click or focus an invisible edge target and press Escape to close the panel.
 
 Choose which panels to compact and whether to fit the page to the available width. Your choices are saved locally. A manual numeric zoom change pauses automatic fitting until the document is reloaded. Pageless documents keep their native zoom.
 
@@ -48,10 +48,10 @@ Publish the accompanying privacy policy at a stable public URL and provide that 
 ## Publication checklist
 
 - [ ] Test the final packaged version in Chrome with a disposable sample Google Doc, including both panel overlays, keyboard access, all settings, narrow windows, manual zoom, and pageless mode.
-- [ ] Replace the existing screenshots with sharp captures showing Google Docs tiled on the left alongside another window. See `SCREENSHOTS.md` for provenance and limits.
-- [ ] Prepare and review replacement screenshots at store-accepted dimensions. Confirm the accepted dimensions in the dashboard before uploading.
-- [ ] Prepare the required store icon and any promotional imagery requested by the dashboard. The manifest includes 16, 32, 48 and 128 pixel PNG icons.
-- [ ] Host the privacy policy, confirm the effective date, and enter its public URL in the dashboard.
+- [x] Replace outdated screenshots with fresh installed 1.4.0 captures, including the left-positioned narrow editor, actual popup, and explicit edge-hover explanation. See `SCREENSHOTS.md` for provenance and limits.
+- [x] Prepare five 1280 × 800 RGB screenshots and one optional hover alternative. Choose five for upload.
+- [x] Prepare the green store icon and matching 16, 32, 48 and 128 pixel runtime PNGs.
+- [ ] Enable GitHub Pages on a supported visibility/plan, verify https://anguswww.github.io/compactdocs-chrome-extension/privacy.html is public, and enter it in the dashboard.
 - [ ] Verify permission justifications and privacy answers against the final package, including locally processed page data.
 - [x] Package the extension files, excluding tests, store drafts, and unrelated files. Version 1.4.0 is packaged in `dist/compactdocs-1.4.0.zip`.
 - [ ] Enter the listing copy, support contact, category, and other dashboard details. Review all fields and imagery before submitting.
