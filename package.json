@@ -1,0 +1,12 @@
+{
+  "name": "compactdocs",
+  "version": "1.4.0",
+  "private": true,
+  "description": "Compact panels for Google Docs",
+  "scripts": {
+    "build": "node build-styles.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "check": "node --check content.js && node --check hover.js && node --check popup.js && node --check styles.js",
+    "package": "npm run build && npm test && npm run check && node package.mjs"
+  }
+}

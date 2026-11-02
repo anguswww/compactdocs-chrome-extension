@@ -5,6 +5,7 @@ const compactDocsHover = (() => {
   let keyboard = false;
   let initialized = false;
   let closeTimer;
+  let openTimer;
   const buttons = {};
   const selectors = {
     left: '.left-sidebar-container',
@@ -12,6 +13,8 @@ const compactDocsHover = (() => {
   };
   function show(side, byKeyboard = false) {
     clearTimeout(closeTimer);
+    clearTimeout(openTimer);
+    if (buttons[side]?.hidden) return;
     active = side;
     keyboard = byKeyboard;
     for (const name of ['left', 'right']) {
@@ -21,6 +24,7 @@ const compactDocsHover = (() => {
   }
   function close() {
     clearTimeout(closeTimer);
+    clearTimeout(openTimer);
     active = null;
     for (const side of ['left', 'right']) {
       document.documentElement.classList.remove(`compactdocs-peek-${side}`);
@@ -31,6 +35,7 @@ const compactDocsHover = (() => {
     return !!side && node instanceof Element && (node.closest(selectors[side]) || buttons[side]?.contains(node));
   }
   function deferClose() {
+    clearTimeout(openTimer);
     clearTimeout(closeTimer);
     closeTimer = setTimeout(() => {
       if (!keyboard || !inside(document.activeElement, active)) close();
@@ -41,6 +46,13 @@ const compactDocsHover = (() => {
     if (inside(event.target, active) || event.target.closest?.('.goog-menu, [role="dialog"]')) {
       clearTimeout(closeTimer);
     } else deferClose();
+  });
+  document.addEventListener('pointerout', event => {
+    if (!event.relatedTarget) deferClose();
+  });
+  window.addEventListener('blur', () => {
+    // Focusing an embedded side-panel app also blurs this window.
+    if (!document.hasFocus()) close();
   });
   document.addEventListener('focusin', event => {
     if (active && !inside(event.target, active)) deferClose();
@@ -58,6 +70,7 @@ const compactDocsHover = (() => {
     isOpen: () => active !== null,
     update(value, activate) {
       settings = value;
+      if (!settings.collapseTabs && !settings.hideRightPanel) clearTimeout(openTimer);
       const editor = document.querySelector('#kix-appview');
       if (!editor) return;
       if (!initialized && activate && document.querySelector('.kix-canvas-tile-content')) {
@@ -83,13 +96,16 @@ const compactDocsHover = (() => {
           button.id = `compactdocs-edge-${side}`;
           button.className = 'compactdocs-edge';
           button.type = 'button';
-          button.textContent = side === 'left' ? '☰' : '‹';
-          button.setAttribute('aria-label', side === 'left' ? 'Show document tabs on hover' : 'Show Google side panel on hover');
+          button.textContent = '';
+          button.setAttribute('aria-label', side === 'left' ? 'Show document tabs' : 'Show Google side panel');
           button.setAttribute('aria-expanded', 'false');
-          button.title = side === 'left' ? 'Document tabs' : 'Google side panel';
-          button.addEventListener('pointerenter', () => show(side));
+          button.addEventListener('pointerenter', () => {
+            clearTimeout(openTimer);
+            clearTimeout(closeTimer);
+            openTimer = setTimeout(() => show(side), 140);
+          });
           button.addEventListener('focus', () => show(side, button.matches(':focus-visible')));
-          button.addEventListener('click', () => { button.blur(); show(side); });
+          button.addEventListener('click', () => show(side, button.matches(':focus-visible')));
           button.addEventListener('pointerleave', deferClose);
           document.body.appendChild(button);
           buttons[side] = button;

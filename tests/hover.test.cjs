@@ -18,6 +18,7 @@ function setup() {
   }
   const document = {
     activeElement:null,
+    hasFocus:()=>false,
     documentElement: {
       classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key),remove:key=>classes.delete(key)},
       style:{getPropertyValue:key=>props.get(key),setProperty:(key,value)=>props.set(key,value)}
@@ -27,7 +28,7 @@ function setup() {
     createElement:()=>new Element(),
     addEventListener:(name,fn)=>events.set(name,fn)
   };
-  const context=vm.createContext({document,Element,Event:class {},window:{dispatchEvent(){}},clearTimeout:id=>timers.delete(id),setTimeout:fn=>{timers.set(++timerId,fn);return timerId;}});
+  const context=vm.createContext({document,Element,Event:class {},window:{dispatchEvent(){},addEventListener:(name,fn)=>events.set(`window:${name}`,fn)},clearTimeout:id=>timers.delete(id),setTimeout:fn=>{timers.set(++timerId,fn);return timerId;}});
   vm.runInContext(readFileSync('hover.js','utf8'),context);
   const controller=vm.runInContext('compactDocsHover',context);
   controller.update({collapseTabs:true,hideRightPanel:true});
@@ -37,9 +38,9 @@ function setup() {
 }
 test('hover reveals one panel and closes when pointer leaves, even if app retains focus',()=>{
   const app=setup();
-  app.buttons.get('compactdocs-edge-left').fire('pointerenter');
+  app.buttons.get('compactdocs-edge-left').fire('pointerenter');app.flush();
   assert.ok(app.classes.has('compactdocs-peek-left'));
-  app.buttons.get('compactdocs-edge-right').fire('pointerenter');
+  app.buttons.get('compactdocs-edge-right').fire('pointerenter');app.flush();
   assert.ok(!app.classes.has('compactdocs-peek-left'));
   const panel=new app.Element('right');
   app.document.activeElement=panel;
@@ -48,7 +49,7 @@ test('hover reveals one panel and closes when pointer leaves, even if app retain
 });
 test('moving from edge button into panel cancels delayed close',()=>{
   const app=setup(), button=app.buttons.get('compactdocs-edge-left');
-  button.fire('pointerenter');button.fire('pointerleave');
+  button.fire('pointerenter');app.flush();button.fire('pointerleave');
   app.event('pointerover',{target:new app.Element('left')});app.flush();
   assert.equal(app.controller.isOpen(),true);
 });
@@ -60,4 +61,36 @@ test('keyboard access and Escape close; disabled settings remove hover access',(
   assert.equal(app.controller.isOpen(),false);
   app.controller.update({collapseTabs:false,hideRightPanel:false});
   assert.equal(button.hidden,true);
+});
+
+test('brief edge passes do not open a panel and window blur dismisses it',()=>{
+  const app=setup(), button=app.buttons.get('compactdocs-edge-left');
+  button.fire('pointerenter');
+  assert.equal(app.controller.isOpen(),false);
+  button.fire('pointerleave');app.flush();
+  assert.equal(app.controller.isOpen(),false);
+  button.fire('pointerenter');app.flush();
+  assert.equal(app.controller.isOpen(),true);
+  app.event('window:blur');
+  assert.equal(app.controller.isOpen(),false);
+});
+test('disabled panel cannot open from a pending hover timer',()=>{
+  const app=setup(), button=app.buttons.get('compactdocs-edge-left');
+  button.fire('pointerenter');
+  app.controller.update({collapseTabs:false,hideRightPanel:true});app.flush();
+  assert.equal(app.controller.isOpen(),false);
+});
+test('leaving the browser cancels a pending reveal',()=>{
+  const app=setup(), button=app.buttons.get('compactdocs-edge-left');
+  button.fire('pointerenter');
+  app.event('pointerout',{relatedTarget:null});app.flush();
+  assert.equal(app.controller.isOpen(),false);
+});
+
+test('focus inside an embedded app does not dismiss its overlay',()=>{
+  const app=setup();
+  app.buttons.get('compactdocs-edge-right').fire('click');
+  app.document.hasFocus=()=>true;
+  app.event('window:blur');
+  assert.equal(app.controller.isOpen(),true);
 });

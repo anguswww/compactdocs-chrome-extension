@@ -34,3 +34,12 @@ Selected native View → Text width → Full on the TL;DR document. The previous
 Checked native full tabs list and tab selection in the overlay; switching tabs can dismiss the overlay when Docs focuses the editor. Checked Keep opening and mouse exit auto-hide, Escape, and paged/pageless document geometry before/after opening overlays. The editor width, content x position and zoom remained identical after native layout initialization. The native app panel can remain mounted while hidden, avoiding unnecessary app reloads. A temporary duplicate paged test tab was closed. No text or text-width setting was changed.
 
 Run `node --test tests/*.test.cjs` for nine tests including mouse transitions, delayed closing, keyboard access, Escape, and disabling hover access.
+
+
+## Version 1.4.0 release candidate
+
+Automated checks cover delayed hover opening, cancellation on short edge passes, panel transitions, keyboard and Escape access, disabling a pending reveal, browser exit, and focus inside an embedded app. The existing zoom and style-restoration checks also pass. `npm run package` runs all 13 tests plus JavaScript syntax checks and creates an allowlisted release ZIP.
+
+The final source was run on the user-approved live Google Docs document in the browser preview, with a local settings shim. The compact editor, tabs overlay and right rail were captured and visually inspected. Page and ruler alignment remained consistent. Upper and lower edge targets opened the intended panels on both sides. These checks do not verify installation, permissions or storage in the packaged extension. Do not treat the old 1.3.0 live results as verification of the 1.4.0 package.
+
+Before submission, verify invisible full-height edge targets at the top, middle and bottom of both edges, keyboard focus outlines, edge-to-panel movement, readable tabs over dense document text, both fade directions, native menus, Keep iframe interaction, keyboard focus, reduced motion, print preview, and unchanged document geometry in paged and pageless mode. Check the popup and all settings from the packaged build.
