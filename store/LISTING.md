@@ -3,8 +3,8 @@
 ## Name
 CompactDocs
 
-## Short description
-Make Google Docs easier to use in a window tiled to the left of your screen.
+## Short description (82 characters, matches the manifest description)
+Make more room in Google Docs with compact side panels and optional page fitting.
 
 ## Detailed description
 Tile Google Docs to the left and keep another window alongside it. CompactDocs gives your document more room in that narrow window by reducing sidebar clutter and fitting the page to the available width.
