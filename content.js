@@ -1,6 +1,7 @@
 (() => {
   const defaults = { collapseTabs: true, hideRightPanel: true, fitToWindow: true };
-  let settings = defaults;
+  let settings = { ...defaults };
+  const pendingSettings = {};
   let attempted = false;
   let tabsAttempts = 0;
   let tabsRetryPending = false;
@@ -8,7 +9,7 @@
   let initialized = false;
   let lastZoom = null;
   let manualZoom = false;
-  let normalizingZoom = false;
+  let autoFitZoom = null;
   const collapsedRightControls = new WeakSet();
   function activate(control) {
     // Google Closure buttons activate on mouseup, rather than DOM click().
@@ -21,39 +22,35 @@
   }
 
   function fitPage() {
-    if (!settings.fitToWindow || manualZoom || normalizingZoom || (typeof compactDocsHover !== 'undefined' && compactDocsHover.isOpen())) return;
     const input = document.querySelector('#zoomSelect input');
-    const page = document.querySelector('.canvas-first-page');
     const editor = document.querySelector('#docs-editor');
-    if (!input || !editor) return;
+    // Do not commit or blur a user's in-progress zoom edit during layout work.
+    if (!input || !editor || document.activeElement === input) return;
     const value = input.value;
-    if (lastZoom !== null && value !== lastZoom) { manualZoom = true; return; }
-    if (document.body.classList.contains('docs-body-pageless')) {
+    // Fit remains Docs' real zoom mode. The compact layout supplies its width.
+    if (value === 'Fit') {
       lastZoom = value;
-      return;
-    }
-    if (!page) return;
-    if (value === 'Fit' && lastZoom === null) {
-      normalizingZoom = true;
-      lastZoom = '100%';
-      setViewZoom(lastZoom);
-      // Let Docs render at a known scale before measuring custom paper sizes.
-      setTimeout(() => { normalizingZoom = false; schedule(); }, 250);
+      manualZoom = false;
+      if (autoFitZoom !== null && (!settings.fitToWindow || window.innerWidth > 960) && !document.body.classList.contains('docs-body-pageless') && !(typeof compactDocsHover !== 'undefined' && compactDocsHover.isOpen())) {
+        lastZoom = autoFitZoom;
+        autoFitZoom = null;
+        setViewZoom(lastZoom);
+      }
       return;
     }
     if (!/^\d+(?:\.\d+)?%$/.test(value)) return;
+    if (lastZoom === null && value !== '100%') manualZoom = true;
+    if (lastZoom !== null && value !== lastZoom) { manualZoom = true; autoFitZoom = null; }
+    lastZoom = value;
+    if (!settings.fitToWindow || manualZoom || document.body.classList.contains('docs-body-pageless')) return;
+    if (typeof compactDocsHover !== 'undefined' && compactDocsHover.isOpen()) return;
+    if (!(window.innerWidth > 0 && window.innerWidth <= 960)) return;
+    if (!document.querySelector('.canvas-first-page') || !/^\d+(?:\.\d+)?%$/.test(value)) return;
     const sidebar = document.querySelector('.navigation-widget');
     if (settings.collapseTabs && !sidebar?.classList.contains('navigation-widget-hidden')) return;
-    const baseWidth = page.getBoundingClientRect().width / (parseFloat(value) / 100);
-    const leftReserve = settings.collapseTabs && sidebar?.classList.contains('navigation-widget-hidden')
-      ? 0 : parseFloat(document.querySelector('.left-sidebar-container')?.style.width || '0');
-    const available = parseFloat(document.documentElement.style.getPropertyValue('--compactdocs-editor-width') || editor.style.width) - leftReserve - 48;
-    if (!baseWidth || available < 100) return;
-    const target = `${Math.max(25, Math.min(200, Math.floor(available / baseWidth * 100)))}%`;
-    lastZoom = value;
-    if (value === target) return;
-    lastZoom = target;
-    setViewZoom(target);
+    autoFitZoom = value;
+    lastZoom = 'Fit';
+    setViewZoom('Fit');
   }
   function setViewZoom(target) {
     const input = document.querySelector('#zoomSelect input');
@@ -146,18 +143,29 @@
     requestAnimationFrame(() => { scheduled = false; apply(); });
   }
   chrome.storage.local.get(defaults, value => {
-    settings = value;
+    settings = { ...defaults, ...value, ...pendingSettings };
     initialized = true;
     schedule();
   });
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local') return;
-    for (const key of Object.keys(defaults)) if (changes[key]) settings[key] = changes[key].newValue ?? defaults[key];
+    for (const key of Object.keys(defaults)) if (changes[key]) {
+      settings[key] = changes[key].newValue ?? defaults[key];
+      if (!initialized) pendingSettings[key] = settings[key];
+    }
     attempted = false;
     tabsAttempts = 0;
-    manualZoom = false;
-    lastZoom = null;
     schedule();
+  });
+  // Relinquish automatic zoom before Docs handles a real zoom interaction.
+  // Synthetic Enter events from setViewZoom must retain extension ownership.
+  for (const type of ['pointerdown', 'keydown']) document.addEventListener(type, event => {
+    if (!event.isTrusted || !document.querySelector('#zoomSelect')?.contains(event.target)) return;
+    autoFitZoom = null;
+    manualZoom = true;
+  }, true);
+  document.addEventListener('focusout', event => {
+    if (event.target === document.querySelector('#zoomSelect input')) schedule();
   });
   window.addEventListener('resize', schedule);
   new MutationObserver(schedule).observe(document.documentElement, {

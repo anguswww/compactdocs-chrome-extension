@@ -9,11 +9,11 @@ Make Google Docs easier to use in a window tiled to the left of your screen.
 ## Detailed description
 Tile Google Docs to the left and keep another window alongside it. CompactDocs gives your document more room in that narrow window by reducing sidebar clutter and fitting the page to the available width.
 
-Tile your browser window using your operating system’s window controls; CompactDocs adapts the Docs layout inside it.
+Tile your browser window using your operating system’s window controls. CompactDocs adapts the Docs layout inside it.
 
 CompactDocs collapses the document tabs and right side panel to reclaim space. Hover anywhere along the left or right edge of the window to reveal the panels over your document. The edge targets stay invisible until focused with the keyboard. You can also click or focus an invisible edge target and press Escape to close the panel.
 
-Choose which panels to compact and whether to fit the page to the available width. Your choices are saved locally. A manual numeric zoom change pauses automatic fitting until the document is reloaded. Pageless documents keep their native zoom.
+Choose which panels to compact and whether to fit the page to the available width. Your choices are saved locally. Page fitting uses Google Docs' native Fit mode in narrow windows. A manual numeric zoom change pauses automatic fitting. Pageless documents keep their native zoom.
 
 CompactDocs runs on Google Docs document pages. It uses the page interface to adjust the layout and view zoom. It does not collect document content or send data to a server. Google Docs interface changes or non-English labels may affect compatibility.
 
@@ -53,7 +53,7 @@ Publish the accompanying privacy policy at a stable public URL and provide that 
 - [x] Prepare the green store icon and matching 16, 32, 48 and 128 pixel runtime PNGs.
 - [ ] Enable GitHub Pages on a supported visibility/plan, verify https://anguswww.github.io/compactdocs-chrome-extension/privacy.html is public, and enter it in the dashboard.
 - [ ] Verify permission justifications and privacy answers against the final package, including locally processed page data.
-- [x] Package the extension files, excluding tests, store drafts, and unrelated files. Version 1.4.0 is packaged in `dist/compactdocs-1.4.0.zip`.
+- [x] Package the extension files, excluding tests, store drafts, and unrelated files. Version 1.4.1 is packaged in `dist/compactdocs-1.4.1.zip`.
 - [ ] Enter the listing copy, support contact, category, and other dashboard details. Review all fields and imagery before submitting.
 
 References: [Supplying images](https://developer.chrome.com/docs/webstore/images), [Program policies](https://developer.chrome.com/docs/webstore/program-policies/policies), [User data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq).

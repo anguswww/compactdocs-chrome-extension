@@ -1,9 +1,19 @@
 # Changelog
 
+## 1.4.1 (unreleased)
+
+- Use Google Docs' native Fit mode in narrow windows instead of calculated percentage zoom.
+- Preserve manual numeric zoom and restore the previous zoom when automatic Fit is disabled or the window widens.
+- Avoid interrupting edits in the zoom field.
+- Keep preference changes made during startup instead of overwriting them with a stale storage response.
+- Disable popup controls while settings load or save, and show accessible errors when storage fails.
+- Dismiss hover overlays and hide their controls when the editor is removed.
+- Rewrite release copy without prose semicolons.
+
 ## 1.4.0
 
 - Invisible full-height hover targets replace protruding edge buttons.
-- A short hover delay prevents accidental reveals; leaving the window cancels pending reveals.
+- A short hover delay helps avoid accidental reveals. Leaving the window cancels pending reveals.
 - Rounded document-tabs overlays use a translucent surface, with fully opaque text and a stronger background on hover or keyboard focus.
 - Panels fade in and out, with reduced-motion support.
 - Updated popup labels and descriptions for the three independent settings.

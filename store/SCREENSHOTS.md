@@ -9,7 +9,7 @@ The current store plates use genuine captures of the installed 1.4.0 extension i
 - `screenshots/05-your-settings.png`: actual installed extension popup, captured at 2× device pixel ratio and cropped to its three settings.
 - `alternatives/06-hover-access.png`: closed/open comparison with an annotation identifying the invisible full-height edge target. The green edge line is an annotation, not an extension control.
 
-Each plate is a 1280 × 800 RGB PNG. The first five are the default upload set; the alternative can replace 03. The Chrome Web Store accepts up to five screenshots.
+Each plate is a 1280 × 800 RGB PNG. The first five are the default upload set. The alternative can replace 03. The Chrome Web Store accepts up to five screenshots.
 
 Live checks confirmed 89% auto-fit at 780 px and 70% at 620 px, identical page bounds and zoom before/after hover, pointer-exit dismissal, keyboard focus and Escape, and all three popup switches. Fresh anonymous captures do not verify signed-in Workspace apps. The right-panel feature is represented in accurate copy and the actual setting, not a fabricated signed-in screenshot. See `../TESTING.md` for historical checks and remaining manual cases.
 

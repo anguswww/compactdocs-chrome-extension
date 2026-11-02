@@ -36,6 +36,22 @@ function setup() {
     event:(name,event)=>events.get(name)?.(event),
     flush:()=>{const pending=[...timers.values()];timers.clear();pending.forEach(fn=>fn());}};
 }
+test('editor teardown cancels pending hover and hides stale controls',()=>{
+  const app=setup(), button=app.buttons.get('compactdocs-edge-left');
+  button.fire('pointerenter');
+  app.document.querySelector=()=>null;
+  app.controller.update({collapseTabs:true,hideRightPanel:true});
+  app.flush();
+  assert.equal(app.controller.isOpen(),false);
+  for (const edge of app.buttons.values()) assert.equal(edge.hidden,true);
+});
+test('editor teardown dismisses an already open panel',()=>{
+  const app=setup();
+  app.buttons.get('compactdocs-edge-left').fire('click');
+  app.document.querySelector=()=>null;
+  app.controller.update({collapseTabs:true,hideRightPanel:true});
+  assert.equal(app.controller.isOpen(),false);
+});
 test('hover reveals one panel and closes when pointer leaves, even if app retains focus',()=>{
   const app=setup();
   app.buttons.get('compactdocs-edge-left').fire('pointerenter');app.flush();

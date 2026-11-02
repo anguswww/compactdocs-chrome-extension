@@ -2,7 +2,7 @@
 
 # CompactDocs
 
-More room for Google Docs in a narrow window. Tile Docs beside your research or notes using your operating system's window controls; CompactDocs reclaims space inside the editor.
+More room for Google Docs in a narrow window. Tile Docs beside your research or notes using your operating system's window controls. CompactDocs reclaims space inside the editor.
 
 [Download the latest release](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest) · [Website](https://anguswww.github.io/compactdocs-chrome-extension/) · [Privacy](https://anguswww.github.io/compactdocs-chrome-extension/privacy.html) · [Report a problem](https://github.com/anguswww/compactdocs-chrome-extension/issues)
 
@@ -13,20 +13,20 @@ More room for Google Docs in a narrow window. Tile Docs beside your research or 
 - Reclaims the document-tabs gutter and right Workspace rail.
 - Reveals native panels when you hover along either window edge. The targets are invisible and span the full height of the window.
 - Keeps panels over the document instead of moving the page. Move away to hide them, or use Tab, click, and Escape.
-- Fits paged documents to the available width. Manual numeric zoom pauses auto-fit until reload; pageless documents keep their native zoom.
+- Uses Google Docs' native Fit zoom in narrow windows for paged documents. Manual numeric zoom pauses automatic fitting. Pageless documents keep their native zoom.
 - Saves three independent settings locally in your browser.
 
 No analytics, network requests, runtime dependencies, or document-content collection. It adjusts the editing view, not your document text or page size.
 
 ## Install
 
-1. Download `compactdocs-1.4.0.zip` from [Releases](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest).
+1. Download `compactdocs-1.4.1.zip` from [Releases](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest).
 2. Extract the ZIP to a folder you can keep on your computer.
 3. Open `chrome://extensions` and turn on **Developer mode**.
 4. Select **Load unpacked** and choose the extracted folder.
 5. Reload open Google Docs documents. Pin CompactDocs if you want quick access to its settings.
 
-The Chrome Web Store listing is not published yet. A GitHub release ZIP must be loaded unpacked; it is not a store installation.
+The Chrome Web Store listing is not published yet. A GitHub release ZIP must be loaded unpacked. It is not a store installation.
 
 ## Use
 
@@ -36,7 +36,7 @@ In the toolbar popup, choose **Document tabs**, **Google side panel**, and **Fit
 
 ## Scope and limitations
 
-Runs only on `https://docs.google.com/document/d/*`. Native-control detection currently targets English labels. Google Docs interface changes can affect compatibility. Workspace apps depend on the access provided by Google; anonymous documents do not expose all signed-in features. The extension does not tile windows, force pageless text width, or provide a Chrome side-panel document viewer.
+Runs only on `https://docs.google.com/document/d/*`. Native-control detection currently targets English labels. Google Docs interface changes can affect compatibility. Workspace apps depend on the access provided by Google. Anonymous documents do not expose all signed-in features. The extension does not tile windows, force pageless text width, or provide a Chrome side-panel document viewer.
 
 See [TESTING.md](TESTING.md) for historical checks and remaining manual cases. [Screenshot provenance](store/SCREENSHOTS.md) records the fresh 1.4.0 captures and their limits.
 
@@ -50,14 +50,14 @@ npm run check
 npm run package
 ```
 
-After editing `compact.css`, run `npm run build` to refresh the bundled `styles.js`. The package command rebuilds styles, runs tests and syntax checks, and writes `dist/compactdocs-1.4.0.zip`. The ZIP contains only the extension runtime, icons, and MIT license, not tests, marketing assets, or website files.
+After editing `compact.css`, run `npm run build` to refresh the bundled `styles.js`. The package command rebuilds styles, runs tests and syntax checks, and writes `dist/compactdocs-1.4.1.zip`. The ZIP contains only the extension runtime, icons, and MIT license, not tests, marketing assets, or website files.
 
 ## Releases and website
 
 - CI checks pull requests and pushes to `main`.
 - Pushing a matching version tag such as `v1.4.1` tests and packages the extension, then publishes a GitHub release with its ZIP and SHA-256 checksum.
 - Website source lives in `site/`. The website workflow keeps `gh-pages` as the generated deployment branch. GitHub Pages deployment is enabled with the `PAGES_ENABLED` repository variable after Pages is configured.
-- GitHub Pages must be available for the repository's visibility and account plan. A private repo on an unsupported plan cannot publish the site; the source and deployment branch remain ready.
+- GitHub Pages must be available for the repository's visibility and account plan. A private repo on an unsupported plan cannot publish the site. The source and deployment branch remain ready.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for release and Pages setup instructions, and [store/LISTING.md](store/LISTING.md) for store submission fields.
 

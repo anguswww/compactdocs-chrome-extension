@@ -72,7 +72,11 @@ const compactDocsHover = (() => {
       settings = value;
       if (!settings.collapseTabs && !settings.hideRightPanel) clearTimeout(openTimer);
       const editor = document.querySelector('#kix-appview');
-      if (!editor) return;
+      if (!editor) {
+        close();
+        for (const button of Object.values(buttons)) button.hidden = true;
+        return;
+      }
       if (!initialized && activate && document.querySelector('.kix-canvas-tile-content')) {
         initialized = true;
         // Let Docs finish mounting its resize handlers, then settle the canvas

@@ -10,7 +10,7 @@ npm run check
 npm run package
 ```
 
-Keep `styles.js` generated from `compact.css`; do not hand-edit the generated string. `npm run build` refreshes it. Packaging tests verify the ZIP contains only runtime files, icons, and the license. Test live behaviour on an English Google Docs document before changing selectors or layout code. Never put private document contents in fixtures or screenshots.
+Keep `styles.js` generated from `compact.css`. Do not hand-edit the generated string. `npm run build` refreshes it. Packaging tests verify the ZIP contains only runtime files, icons, and the license. Test live behaviour on an English Google Docs document before changing selectors or layout code. Never put private document contents in fixtures or screenshots.
 
 ## Publish a release
 
