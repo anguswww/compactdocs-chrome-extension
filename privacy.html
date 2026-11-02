@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CompactDocs privacy policy: local layout processing, three locally stored preferences, no analytics or document-content collection.">
+  <meta name="theme-color" content="#176f57">
+  <title>Privacy policy · CompactDocs</title>
+  <link rel="canonical" href="https://anguswww.github.io/compactdocs-chrome-extension/privacy.html">
+  <link rel="icon" href="assets/icon-128.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="brand" href="./" aria-label="CompactDocs home"><img src="assets/icon-128.png" width="36" height="36" alt=""><span>CompactDocs</span></a><nav aria-label="Main navigation"><a href="./">Home</a><a href="https://github.com/anguswww/compactdocs-chrome-extension">Source <span aria-hidden="true">↗</span></a></nav></header>
+  <main id="main" class="policy wrap">
+    <a class="back-link" href="./">← Back to CompactDocs</a>
+    <p class="eyebrow">Local by design</p>
+    <h1>Privacy policy</h1>
+    <p class="policy-meta">Applies to CompactDocs 1.4.0.</p>
+    <p class="policy-lead">CompactDocs adjusts the Google Docs interface on your device. It does not collect document content, run analytics, or send data to a server.</p>
+    <section aria-labelledby="processing-title"><h2 id="processing-title">What the extension processes</h2><p>CompactDocs runs on Google Docs document pages matching <code>https://docs.google.com/document/d/*</code>. It examines the local page interface (the DOM), including control labels, panel state, layout dimensions, and view zoom, to locate native controls, compact the side panels, and fit paged documents to the available width.</p><p>This processing happens locally in your browser. The extension changes interface styles and local view zoom. It does not edit the document content, collect or store document text, or send document content elsewhere.</p></section>
+    <section aria-labelledby="storage-title"><h2 id="storage-title">Three preferences, saved locally</h2><p>The <code>storage</code> permission is used to save three preferences in <code>chrome.storage.local</code>:</p><ul><li><strong>Document tabs</strong> (<code>collapseTabs</code>): whether to keep the tabs tucked away.</li><li><strong>Google side panel</strong> (<code>hideRightPanel</code>): whether to keep the side panel tucked away.</li><li><strong>Fit page to window</strong> (<code>fitToWindow</code>): whether to fit paged documents to the window.</li></ul><p>All three are enabled by default. These settings stay in the browser's local extension storage, not Chrome sync storage or an external server. You can change them in the toolbar popup. Removing the extension removes its local extension storage.</p></section>
+    <section aria-labelledby="transmission-title"><h2 id="transmission-title">No collection or transmission</h2><p>CompactDocs makes no network requests and has no analytics, advertising, tracking, or remote code. It does not collect, transmit, sell, or share personal data, browsing history, or document content. There is no CompactDocs account or server.</p></section>
+    <section aria-labelledby="permissions-title"><h2 id="permissions-title">Where access is needed</h2><p>The extension's content scripts are limited to the Google Docs document URL pattern above. They use that access to operate native panel controls, apply local layout styles, and adjust view zoom when fitting is enabled. They do not run on other websites or the Google Docs home page. The only declared extension permission is <code>storage</code>.</p></section>
+    <section aria-labelledby="google-title"><h2 id="google-title">Google and other services</h2><p>Google Docs continues to connect to Google as it normally does. Those connections are made by Google Docs, not CompactDocs. Google's handling of your account and documents is governed by <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</p><p>This project website is intended for hosting on GitHub Pages, and downloads and source code are hosted on GitHub. GitHub may process normal service and request information under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. These website and download services are separate from the extension, which makes no network requests. This website includes no analytics, cookies, or third-party embedded resources.</p></section>
+    <section aria-labelledby="contact-title"><h2 id="contact-title">Support and policy changes</h2><p>For privacy questions or support, email <a href="mailto:angus.wwww@gmail.com">angus.wwww@gmail.com</a>. If you contact support, the information you choose to send will be used to respond. Please do not send private document content.</p><p>If the extension's behavior changes, this policy will be updated to describe it. Review this page alongside the version you install.</p></section>
+  </main>
+  <footer class="site-footer wrap"><div class="footer-row"><a class="brand" href="./"><img src="assets/icon-128.png" width="28" height="28" alt=""><span>CompactDocs</span></a><nav aria-label="Footer navigation"><a href="./">Home</a><a href="mailto:angus.wwww@gmail.com">Support</a><a href="https://github.com/anguswww/compactdocs-chrome-extension">GitHub</a></nav></div><p>Independent software. Not affiliated with or endorsed by Google. Google Docs is a trademark of Google LLC.</p></footer>
+</body>
+</html>
