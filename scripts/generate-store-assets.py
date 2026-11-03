@@ -168,7 +168,7 @@ def main():
         print(f'Verified {len(OUTPUTS)} assets and website copies.')
         return
     version = json.loads((ROOT / 'manifest.json').read_text())['version']
-    target = ROOT / 'dist' / f'compactdocs-{version}-store-assets.zip' 
+    target = ROOT / 'dist' / f'compactdocs-{version}-store-assets.zip'
     target.parent.mkdir(exist_ok=True)
     manifest = {str(p.relative_to(STORE)): {'sha256': hashlib.sha256(p.read_bytes()).hexdigest(), 'size': list(Image.open(p).size)} for p in OUTPUTS}
     (STORE / 'asset-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
