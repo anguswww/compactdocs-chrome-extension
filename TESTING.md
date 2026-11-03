@@ -80,3 +80,15 @@ Automatic fitting now switches paged documents to Google Docs' native Fit zoom i
 - Manual 75% at 620px: preserved and followed by no later override.
 
 The suite had grown to 33 tests; they cover startup storage races, wide-window zoom ownership, native Fit selection, restoring the replaced zoom, making user Fit manual on trusted interactions, synthetic Enter retaining ownership, no blurring of the zoom field mid-edit, deferred restoration, sidebar changes not resetting manual zoom, and hover teardown after editor removal. All pass, along with syntax checks, and `npm run package` builds the allowlisted ZIP. This verifies source behavior with a local settings shim; it does not verify packaged installation or `chrome.storage` integration. Preview test tabs were closed afterwards.
+
+## Version 1.4.2 stale Fit layout (2026-11-03)
+
+Reproduced a stale native Fit size on the user-provided public paged document at 812 px: page bounds x=20.18 to 703.18, leaving an extra collapsed-tabs gutter on the right. A real browser resize corrected it, whereas synthetic window resize and reselecting Fit did not invalidate Docs' cached layout.
+
+Added a small bundled MAIN-world bridge that coalesces layout-change notifications into one animation frame and invokes Docs' existing `KX_resize` entry point. It carries no data, reads no document content and leaves zoom ownership and the canvas/ruler coordinate origin unchanged. Missing or not-yet-initialized Docs is tolerated with bounded retries. No new permissions were added. If Google removes that entry point, the bridge safely stops refreshing; normal browser resizing remains available.
+
+On a fresh reload with final source and a local settings shim, native Fit now produces page bounds x=20.62 to 775.62 at 812 px without resizing. At 780 px the bounds are x=20.43 to 743.93 and remain identical while the native tabs overlay is open. At 620 px the page is x=19.46 to 584.96, without horizontal editor overflow. Manual 75% remains 75% after resizing from 780 to 640 px. A click at x=300, y=420 places the caret at x=300, y=418. No document text or page settings were changed.
+
+`npm run package` passes all 37 tests, syntax checks and ZIP allowlist validation. Added bridge checks cover coalescing, loading failures, bounded retries, editor teardown and avoiding mutation feedback loops. The final release ZIP was extracted and loaded in a temporary Helium profile and passes an intercepted offline Docs-domain fixture: isolated CSS and settings remain isolated, MAIN receives the resize request and sees the recovered editor width, and all three actual popup switches save and restore. Run with `uv run --with playwright python scripts/verify-runtime.py --archive dist/compactdocs-1.4.2.zip`; set `COMPACTDOCS_BROWSER` to a compatible Chromium binary if needed.
+
+The live Docs checks verify final source; the installed-extension check uses a fixture. Packaged installation on signed-in live Docs, Workspace apps, printing and live pageless mode remain manual checks. The existing automated zoom, pageless, hover and popup coverage passes.

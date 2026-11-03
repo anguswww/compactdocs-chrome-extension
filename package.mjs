@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 const manifest = JSON.parse(readFileSync('manifest.json', 'utf8'));
 const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
 if (manifest.version !== pkg.version) throw new Error('Package and manifest versions must match');
-const files = ['LICENSE', 'manifest.json', 'styles.js', 'hover.js', 'content.js', 'popup.html', 'popup.js', ...Object.values(manifest.icons)];
+const files = ['LICENSE', 'manifest.json', 'styles.js', 'layout.js', 'hover.js', 'content.js', 'popup.html', 'popup.js', ...Object.values(manifest.icons)];
 const target = resolve('dist', `compactdocs-${manifest.version}.zip`);
 mkdirSync('dist', { recursive: true });
 const staging = mkdtempSync(join(tmpdir(), 'compactdocs-release-'));

@@ -10,7 +10,7 @@ test('release ZIP contains MIT license and only distributable extension files', 
   const staging = mkdtempSync(join(tmpdir(), 'compactdocs-package-test-'));
   try {
     const manifest = JSON.parse(readFileSync(join(root, 'manifest.json'), 'utf8'));
-    const runtime = ['manifest.json', 'styles.js', 'hover.js', 'content.js', 'popup.html', 'popup.js', ...Object.values(manifest.icons)];
+    const runtime = ['manifest.json', 'styles.js', 'layout.js', 'hover.js', 'content.js', 'popup.html', 'popup.js', ...Object.values(manifest.icons)];
     for (const name of ['package.mjs', 'package.json', ...runtime, ...(existsSync(join(root, 'LICENSE')) ? ['LICENSE'] : [])]) {
       const destination = join(staging, name);
       mkdirSync(dirname(destination), { recursive: true });

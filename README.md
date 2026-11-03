@@ -20,7 +20,7 @@ No analytics, network requests, runtime dependencies, or document-content collec
 
 ## Install
 
-1. Download `compactdocs-1.4.1.zip` from [Releases](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest).
+1. Download `compactdocs-1.4.2.zip` from [Releases](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest).
 2. Extract the ZIP to a folder you can keep on your computer.
 3. Open `chrome://extensions` and turn on **Developer mode**.
 4. Select **Load unpacked** and choose the extracted folder.
@@ -50,12 +50,12 @@ npm run check
 npm run package
 ```
 
-After editing `compact.css`, run `npm run build` to refresh the bundled `styles.js`. The package command rebuilds styles, runs tests and syntax checks, and writes `dist/compactdocs-1.4.1.zip`. The ZIP contains only the extension runtime, icons, and MIT license, not tests, marketing assets, or website files.
+After editing `compact.css`, run `npm run build` to refresh the bundled `styles.js`. The package command rebuilds styles, runs tests and syntax checks, and writes `dist/compactdocs-1.4.2.zip`. The ZIP contains only the extension runtime, icons, and MIT license, not tests, marketing assets, or website files.
 
 ## Releases and website
 
 - CI checks pull requests and pushes to `main`.
-- Pushing a matching version tag such as `v1.4.1` tests and packages the extension, then publishes a GitHub release with its ZIP and SHA-256 checksum.
+- Pushing a matching version tag such as `v1.4.2` tests and packages the extension, then publishes a GitHub release with its ZIP and SHA-256 checksum.
 - Website source lives in `site/`. The website workflow keeps `gh-pages` as the generated deployment branch. GitHub Pages deployment is enabled with the `PAGES_ENABLED` repository variable after Pages is configured.
 - GitHub Pages must be available for the repository's visibility and account plan. A private repo on an unsupported plan cannot publish the site. The source and deployment branch remain ready.
 

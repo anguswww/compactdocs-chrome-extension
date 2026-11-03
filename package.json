@@ -1,16 +1,18 @@
 {
   "name": "compactdocs",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "license": "MIT",
   "repository": "github:anguswww/compactdocs-chrome-extension",
   "homepage": "https://anguswww.github.io/compactdocs-chrome-extension/",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "description": "Compact panels for Google Docs",
   "scripts": {
     "build": "node build-styles.mjs",
     "test": "node --test tests/*.test.cjs",
-    "check": "node --check content.js && node --check hover.js && node --check popup.js && node --check styles.js",
+    "check": "node --check layout.js && node --check content.js && node --check hover.js && node --check popup.js && node --check styles.js",
     "package": "npm run build && npm test && npm run check && node package.mjs"
   }
 }

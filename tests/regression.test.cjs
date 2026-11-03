@@ -5,7 +5,7 @@ const vm = require('node:vm');
 
 function boot(zoom = '100%', options = {}) {
   const nodes = new Map();
-  const frames = [], timers = [];
+  const frames = [], timers = [], dispatched = [];
   const listeners = new Map();
   let observer, storageListener, resolveStorage;
   class Element {
@@ -28,6 +28,7 @@ function boot(zoom = '100%', options = {}) {
   const head = {appendChild: n => nodes.set(n.id,n)};
   const doc = {
     addEventListener: (type, cb) => listeners.set(type, cb),
+    dispatchEvent(event) { dispatched.push(event.type); },
     documentElement: root, head, body, activeElement: null,
     getElementById: id => nodes.get(id), createElement: () => new Element(),
     querySelectorAll: () => [],
@@ -38,7 +39,7 @@ function boot(zoom = '100%', options = {}) {
     })[selector]
   };
   const context = vm.createContext({
-    document: doc, HTMLElement: Element, Event: class {}, MouseEvent: class {}, KeyboardEvent: class { constructor(type) { this.type=type; } },
+    document: doc, HTMLElement: Element, Event: class { constructor(type) { this.type=type; } }, MouseEvent: class {}, KeyboardEvent: class { constructor(type) { this.type=type; } },
     window: {get innerWidth(){return options.width || 768;}, addEventListener(){}, dispatchEvent(){}},
     requestAnimationFrame: cb => frames.push(cb), setTimeout: cb => timers.push(cb),
     MutationObserver: class { constructor(cb) {observer=cb;} observe(target) {assert.equal(target,root);} },
@@ -48,7 +49,7 @@ function boot(zoom = '100%', options = {}) {
   vm.runInContext(readFileSync('content.js','utf8'),context);
   const flush = () => { for(let i=0;frames.length && i<20;i++) frames.shift()(); };
   flush();
-  return {nodes, input, combo, doc, root, emit:(type,target,details={})=>{listeners.get(type)?.({target,...details});flush();}, resolveStorage:()=>{resolveStorage();flush();}, observer:()=>{observer();flush();}, timers, flush, changeSettings: values=>{storageListener(Object.fromEntries(Object.entries(values).map(([key,newValue])=>[key,{newValue}])),"local");flush();}};
+  return {nodes, input, combo, doc, root, dispatched, emit:(type,target,details={})=>{listeners.get(type)?.({target,...details});flush();}, resolveStorage:()=>{resolveStorage();flush();}, observer:()=>{observer();flush();}, timers, flush, changeSettings: values=>{storageListener(Object.fromEntries(Object.entries(values).map(([key,newValue])=>[key,{newValue}])),"local");flush();}};
 }
 test('storage changes during startup take precedence over the stale initial snapshot', () => {
   const app=boot('100%', {deferStorage:true});
@@ -189,7 +190,8 @@ test('native Fit stays Fit rather than becoming a numeric percentage', () => {
 });
 test('manifest injects embedded styles before the content script', () => {
   const manifest=JSON.parse(readFileSync('manifest.json','utf8'));
-  assert.deepEqual(manifest.content_scripts[0].js,['styles.js','hover.js','content.js']);
+  assert.deepEqual(manifest.content_scripts.find(script => script.world !== 'MAIN').js,['styles.js','hover.js','content.js']);
+  assert.deepEqual(manifest.content_scripts.find(script => script.world === 'MAIN').js,['layout.js']);
 });
 
 test('pageless preserves native zoom even when a stale page canvas exists', () => {
@@ -211,4 +213,15 @@ test('manual pageless zoom survives a later switch to pages', () => {
   app.input.value='75%';app.observer();
   options.pageless=false;app.observer();
   assert.equal(app.input.value,'75%');
+});
+
+test('layout notifications follow actual compact layout changes, without a mutation feedback loop', () => {
+  const app = boot('Fit');
+  assert.deepEqual(app.dispatched, ['compactdocs-layout-changed']);
+  app.observer(); app.observer();
+  assert.equal(app.dispatched.length, 1);
+  app.changeSettings({hideRightPanel:false});
+  assert.equal(app.dispatched.length, 2);
+  app.nodes.delete('compactdocs-layout-style'); app.observer();
+  assert.equal(app.dispatched.length, 3);
 });

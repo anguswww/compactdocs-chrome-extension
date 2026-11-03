@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.2
+
+- Refresh Google Docs layout after reclaiming sidebar space, so native Fit does not retain a stale right-side gap on startup.
+- Keep the existing shared canvas, ruler and pointer coordinate origin, manual zoom ownership, and hover layout.
+
 ## 1.4.1
 
 - Use Google Docs' native Fit mode in narrow windows instead of calculated percentage zoom.

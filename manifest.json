@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CompactDocs",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Make more room in Google Docs with compact side panels and optional page fitting.",
   "permissions": [
     "storage"
@@ -15,6 +15,12 @@
     }
   },
   "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/document/d/*"],
+      "js": ["layout.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
     {
       "matches": [
         "https://docs.google.com/document/d/*"

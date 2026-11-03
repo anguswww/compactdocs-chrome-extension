@@ -134,7 +134,10 @@
       }
     }
     if (typeof compactDocsHover !== 'undefined') compactDocsHover.update(settings, activate);
-    if (changed) window.dispatchEvent(new Event('resize'));
+    if (changed) {
+      window.dispatchEvent(new Event('resize'));
+      document.dispatchEvent(new Event('compactdocs-layout-changed'));
+    }
     fitPage();
   }
   function schedule() {
