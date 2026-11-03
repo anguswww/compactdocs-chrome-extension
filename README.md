@@ -6,7 +6,7 @@ More room for Google Docs in a narrow window. Tile Docs beside your research or 
 
 [Download the latest release](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest) · [Website](https://anguswww.github.io/compactdocs-chrome-extension/) · [Privacy](https://anguswww.github.io/compactdocs-chrome-extension/privacy.html) · [Report a problem](https://github.com/anguswww/compactdocs-chrome-extension/issues)
 
-<img src="store/screenshots/01-side-by-side.png" width="960" alt="Google Docs in a compact, narrow editing window">
+<img src="store/screenshots/02-more-room.png" width="960" alt="Google Docs in a compact, narrow editing window">
 
 ## What it does
 
@@ -26,7 +26,7 @@ No analytics, network requests, runtime dependencies, or document-content collec
 4. Select **Load unpacked** and choose the extracted folder.
 5. Reload open Google Docs documents. Pin CompactDocs if you want quick access to its settings.
 
-The Chrome Web Store listing is not published yet. A GitHub release ZIP must be loaded unpacked. It is not a store installation.
+Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/compactdocs/lilnjbpiikjfknobepdnlepjgalgdcfi) for automatic updates. The steps above are for manually loading a GitHub release. Store updates are submitted separately from GitHub releases.
 
 ## Use
 
@@ -38,7 +38,7 @@ In the toolbar popup, choose **Document tabs**, **Google side panel**, and **Fit
 
 Runs only on `https://docs.google.com/document/d/*`. Native-control detection currently targets English labels. Google Docs interface changes can affect compatibility. Workspace apps depend on the access provided by Google. Anonymous documents do not expose all signed-in features. The extension does not tile windows, force pageless text width, or provide a Chrome side-panel document viewer.
 
-See [TESTING.md](TESTING.md) for historical checks and remaining manual cases. [Screenshot provenance](store/SCREENSHOTS.md) records the fresh 1.4.0 captures and their limits.
+See [TESTING.md](TESTING.md) for historical checks and remaining manual cases. [Screenshot provenance](store/SCREENSHOTS.md) records the approved document captures, measured page gutters, and their verification limits.
 
 ## Develop
 
@@ -55,7 +55,7 @@ After editing `compact.css`, run `npm run build` to refresh the bundled `styles.
 ## Releases and website
 
 - CI checks pull requests and pushes to `main`.
-- Pushing a matching version tag such as `v1.4.2` tests and packages the extension, then publishes a GitHub release with its ZIP and SHA-256 checksum.
+- Pushing a matching version tag such as `v1.4.2` tests and packages the extension, then publishes a GitHub release with separate extension and store-asset ZIPs plus SHA-256 checksums.
 - Website source lives in `site/`. The website workflow keeps `gh-pages` as the generated deployment branch. GitHub Pages deployment is enabled with the `PAGES_ENABLED` repository variable after Pages is configured.
 - GitHub Pages must be available for the repository's visibility and account plan. A private repo on an unsupported plan cannot publish the site. The source and deployment branch remain ready.
 
@@ -66,3 +66,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for release and Pages setup instructions,
 [Open an issue](https://github.com/anguswww/compactdocs-chrome-extension/issues) or email [angus.wwww@gmail.com](mailto:angus.wwww@gmail.com). Do not include private document contents or credentials in reports.
 
 [MIT](LICENSE), copyright 2026 Angus Wilson. Google Docs is a trademark of Google LLC. CompactDocs is independent of Google and is not affiliated with or endorsed by it.
+
+Generate store artwork with `npm run assets:store` (requires uv and Pillow as pinned in the script). The outputs include `dist/compactdocs-1.4.2-store-assets.zip`. This is separate from the extension package: extract it and upload its four numbered PNGs in the store dashboard. See [upload instructions](store/UPLOAD.md).

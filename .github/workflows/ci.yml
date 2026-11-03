@@ -21,6 +21,12 @@ jobs:
           node-version: '24'
       - name: Test, check syntax, and build release ZIP
         run: npm run package
+      - name: Build and verify store assets
+        run: |
+          python3 -m venv "$RUNNER_TEMP/store-assets-env"
+          "$RUNNER_TEMP/store-assets-env/bin/pip" install Pillow==12.0.0
+          "$RUNNER_TEMP/store-assets-env/bin/python" scripts/generate-store-assets.py --check
+          "$RUNNER_TEMP/store-assets-env/bin/python" scripts/generate-store-assets.py
       - name: Ensure generated styles are current
         run: git diff --exit-code -- styles.js
       - name: Keep tested package

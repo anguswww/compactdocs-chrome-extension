@@ -2,6 +2,11 @@
 
 ## 1.4.2
 
+- Replace the store screenshots with four images that preserve the published listing’s wording, layouts, colours, and proportional IBM Plex Sans fonts.
+- Refresh Google Docs before capturing native Fit, and record source hashes and measured page gutters so stale right-side whitespace cannot silently return.
+- Add an offline store asset generator with bundled fonts, retained approved captures, copy checks, and explicit rejection of clipped text, undersized images, and blank padding.
+- Include a separate, versioned store asset ZIP alongside the extension ZIP and checksums in GitHub releases.
+
 - Refresh Google Docs layout after reclaiming sidebar space, so native Fit does not retain a stale right-side gap on startup.
 - Keep the existing shared canvas, ruler and pointer coordinate origin, manual zoom ownership, and hover layout.
 

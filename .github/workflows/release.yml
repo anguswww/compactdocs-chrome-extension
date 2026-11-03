@@ -30,15 +30,38 @@ jobs:
           NODE
       - name: Test and package
         run: npm run package
+      - name: Build and verify store assets
+        run: |
+          python3 -m venv "$RUNNER_TEMP/store-assets-env"
+          "$RUNNER_TEMP/store-assets-env/bin/pip" install Pillow==12.0.0
+          "$RUNNER_TEMP/store-assets-env/bin/python" scripts/generate-store-assets.py --check
+          "$RUNNER_TEMP/store-assets-env/bin/python" scripts/generate-store-assets.py
       - name: Ensure generated styles are current
         run: git diff --exit-code -- styles.js
       - name: Generate checksum
         run: |
           VERSION="$(node -p 'require("./manifest.json").version')"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
-          (cd dist && sha256sum "compactdocs-$VERSION.zip" > SHA256SUMS)
+          (cd dist && sha256sum "compactdocs-$VERSION.zip" "compactdocs-$VERSION-store-assets.zip" > SHA256SUMS)
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME"             "dist/compactdocs-$VERSION.zip" dist/SHA256SUMS             --verify-tag --latest             --title "CompactDocs $VERSION"             --generate-notes             --notes "Download and extract the extension ZIP, then choose Load unpacked at chrome://extensions. This release is not a Chrome Web Store installation. See the README for setup, usage, and privacy information."
+          python3 - <<'PYNOTES'
+          import os
+          from pathlib import Path
+          version = os.environ['VERSION']
+          changelog = Path('CHANGELOG.md').read_text()
+          changes = changelog.split(f'## {version}\n', 1)[1].split('\n## ', 1)[0].strip()
+          notes = f"""{changes}
+
+          Downloads:
+          - `compactdocs-{version}.zip`: extension package to upload in the Chrome Web Store dashboard, or extract for Load unpacked.
+          - `compactdocs-{version}-store-assets.zip`: extract and upload the four numbered screenshot PNGs separately. Includes the store icon, optional promo tiles, and upload instructions.
+          - `SHA256SUMS`: checksums for both ZIPs.
+
+          This GitHub release does not publish a Chrome Web Store update.
+          """
+          Path('dist/RELEASE_NOTES.md').write_text(notes)
+          PYNOTES
+          gh release create "$GITHUB_REF_NAME"             "dist/compactdocs-$VERSION.zip" "dist/compactdocs-$VERSION-store-assets.zip" dist/SHA256SUMS             --verify-tag --latest             --title "CompactDocs $VERSION"             --notes-file dist/RELEASE_NOTES.md

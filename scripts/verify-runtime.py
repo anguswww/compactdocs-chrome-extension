@@ -10,7 +10,7 @@ with tempfile.TemporaryDirectory(prefix='compactdocs-unpacked-') as unpacked, sy
     runtime_root=root
     if args.archive:
         with zipfile.ZipFile(args.archive) as archive: archive.extractall(unpacked)
-        runtime_root=Path(unpacked)
+        runtime_root=Path(unpacked).resolve()
     ctx=p.chromium.launch_persistent_context(profile, executable_path=os.environ.get('COMPACTDOCS_BROWSER', '/opt/helium/chrome'),headless=True,args=['--no-sandbox',f'--disable-extensions-except={runtime_root}',f'--load-extension={runtime_root}'],viewport={'width':780,'height':800},device_scale_factor=2)
     page=ctx.new_page()
     fixture='''<!doctype html><html><head></head><body><div id="docs-chrome" style="width:780px"></div><div id="docs-editor" style="width:707px"><div id="kix-appview"><div class="navigation-widget navigation-widget-hidden"></div></div></div><script>window.refreshes=0;window.KX_resize=()=>{window.refreshes++;document.body.dataset.width=document.querySelector('#docs-editor').getBoundingClientRect().width;};</script></body></html>'''
