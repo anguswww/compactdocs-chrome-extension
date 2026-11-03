@@ -23,3 +23,5 @@ Support: angus.wwww@gmail.com
 To refresh compact captures in a Docs browser session, activate the source extension with automatic numeric fitting disabled, load `scripts/prepare-store-capture.js`, and call `prepareCompactDocsCapture({width: 620})` at 620 × 900 CSS px, then the corresponding 780 px calls with `hover: false` and `hover: true`. Save the original viewport PNGs and the returned measurements in `sources/capture-metrics.json`, adding each source PNG’s SHA-256. The helper refreshes Docs’ internal layout, selects native Fit, closes menus, waits for fonts, and rejects excess gutters before returning measurements. See `SCREENSHOTS.md` for the source demonstration limits.
 
 Run `uv run scripts/generate-store-assets.py --check` to verify tracked images and website copies without rewriting them. The release workflow regenerates and packages these images alongside the extension. See `UPLOAD.md` to choose the correct download.
+
+Font layout explicitly uses Pillow’s BASIC engine, so installing optional shaping libraries does not change the generated typography between macOS and Linux. CI checks decoded pixels rather than PNG compression bytes.

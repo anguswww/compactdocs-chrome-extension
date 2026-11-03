@@ -23,7 +23,10 @@ ARGS = parser.parse_args()
 
 def font(size, bold=False):
     filename = 'IBMPlexSans-Medium.ttf' if bold else 'IBMPlexSans-Regular.ttf'
-    return ImageFont.truetype(str(STORE / 'fonts' / filename), round(size * S))
+    return ImageFont.truetype(
+        str(STORE / 'fonts' / filename), round(size * S),
+        layout_engine=ImageFont.Layout.BASIC,
+    )
 
 
 def text(im, xy, value, size=24, color=INK, bold=False, spacing=1.18):
