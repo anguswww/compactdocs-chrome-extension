@@ -1,0 +1,51 @@
+{
+  "icon-128.png": {
+    "sha256": "13a86dae4d7ff5683668e0a6b5c009affabc936bfdb3ef7888b40175a45c23c8",
+    "size": [
+      128,
+      128
+    ]
+  },
+  "screenshots/01-hover-tabs.png": {
+    "sha256": "55affd1d0068664a987658c3f332ec6933c48dfd3add6d0e2b463e6c839201cb",
+    "size": [
+      1280,
+      800
+    ]
+  },
+  "screenshots/02-more-room.png": {
+    "sha256": "9b15531206f7da408d65d1f7697bbb11e17977c13739cb35bba4a1d9e5e7193c",
+    "size": [
+      1280,
+      800
+    ]
+  },
+  "screenshots/03-reclaim-space.png": {
+    "sha256": "bf420ada410625a5cb3a353dda039266e5807f872ec4f1f7d2eab65215f90f35",
+    "size": [
+      1280,
+      800
+    ]
+  },
+  "screenshots/04-fit-your-window.png": {
+    "sha256": "8e5a750d268bd5d7cad1814908535e50f905af9666388696ecd8e2ae7b7c6691",
+    "size": [
+      1280,
+      800
+    ]
+  },
+  "promotional/small-promo.png": {
+    "sha256": "75739c81391534652bdae9a6452bd85d9c52abe287e508f28c5b55953d62a68d",
+    "size": [
+      440,
+      280
+    ]
+  },
+  "promotional/marquee-promo.png": {
+    "sha256": "548ae98173c9a6ad06b0240dc4441ce71a2ef546bad51e1d4ffa5e169a771a39",
+    "size": [
+      1400,
+      560
+    ]
+  }
+}

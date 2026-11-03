@@ -13,6 +13,8 @@
     "build": "node build-styles.mjs",
     "test": "node --test tests/*.test.cjs",
     "check": "node --check layout.js && node --check content.js && node --check hover.js && node --check popup.js && node --check styles.js",
-    "package": "npm run build && npm test && npm run check && node package.mjs"
+    "package": "npm run build && npm test && npm run check && node package.mjs",
+    "assets:store": "uv run scripts/generate-store-assets.py",
+    "package:store": "npm run assets:store"
   }
 }

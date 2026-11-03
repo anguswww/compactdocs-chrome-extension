@@ -14,18 +14,18 @@ Keep `styles.js` generated from `compact.css`. Do not hand-edit the generated st
 
 ## Publish a release
 
-1. Update `manifest.json` and `package.json` to the same version, for example `1.4.1`.
+1. Update `manifest.json` and `package.json` to the same version, for example `1.4.2`.
 2. Add the changes to `CHANGELOG.md`, run the checks, and commit through a reviewed pull request.
 3. Once merged, tag the release commit and push the tag:
 
 ```sh
 git switch main
 git pull --ff-only
-git tag -a v1.4.1 -m "CompactDocs 1.4.1"
-git push origin v1.4.1
+git tag -a v1.4.2 -m "CompactDocs 1.4.2"
+git push origin v1.4.2
 ```
 
-The Release workflow rejects a tag that does not match both package versions. It rebuilds, tests, checks syntax, and publishes a release containing the extension ZIP and `SHA256SUMS`. This uses the built-in `GITHUB_TOKEN`, with write permission only on the release job. No personal access token is needed. Existing releases are not overwritten. Publishing here does not submit anything to the Chrome Web Store.
+The Release workflow rejects a tag that does not match both package versions. It rebuilds, tests, checks syntax, validates the store artwork, and publishes the extension ZIP, a separate versioned store-assets ZIP, and `SHA256SUMS`. Store generation uses the approved captures and bundled fonts, with Pillow 12.0.0. Run `npm run assets:store` locally with uv, or run the generator in a Python environment with that Pillow version. This uses the built-in `GITHUB_TOKEN`, with write permission only on the release job. No personal access token is needed. Existing releases are not overwritten. Publishing here does not submit anything to the Chrome Web Store.
 
 ## Website
 

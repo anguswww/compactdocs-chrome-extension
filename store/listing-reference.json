@@ -1,0 +1,47 @@
+{
+  "listing": "https://chromewebstore.google.com/detail/compactdocs/lilnjbpiikjfknobepdnlepjgalgdcfi",
+  "retrieved": "2026-11-03",
+  "screenshots": [
+    {
+      "file": "01-hover-tabs.png",
+      "headline": "Your tabs are one hover away.",
+      "labels": [
+        "Hover along the left edge",
+        "Document tabs"
+      ],
+      "reference_url": "https://lh3.googleusercontent.com/9g5_B0qaX59ppLs1VB8m1BSJDcCwoVhVLhBNC2yl-mrhLSGYTPeFPGm6msS95aQQs4PRwI8ERV_IuiWsMKSlynxETZs=s0"
+    },
+    {
+      "file": "02-more-room.png",
+      "headline": "More room for Google Docs.",
+      "labels": [
+        "Made for side-by-side work."
+      ],
+      "reference_url": "https://lh3.googleusercontent.com/-89NC1k-5lPIZA2Hsnmik7edYUjqq0sVXAg8YgKQ6S7QlxIcPmFmQmBarvVWg5wsDSk8idCSMl5chXATqKbn36OPZb0=s0"
+    },
+    {
+      "file": "03-reclaim-space.png",
+      "headline": "Same window. More document.",
+      "labels": [
+        "Without CompactDocs",
+        "With CompactDocs"
+      ],
+      "reference_url": "https://lh3.googleusercontent.com/cohAr4ZuV7Cc58MMholjE64QTFi7QuAVx7MRb-3u2UyaQuBC2K9Iop9slEMXxpyUIauDnKHtsDBJCLycgpnu92FlAg=s0"
+    },
+    {
+      "file": "04-fit-your-window.png",
+      "headline": "Fits your window.",
+      "labels": [
+        "Docs' native Fit, automatically."
+      ],
+      "reference_url": "https://lh3.googleusercontent.com/Ob82YxpIWxJQBigqDc6lpHVN52AqMcj9lNi2oVAXsz3LsSvwhYMspGTG8vINzRRrzNkangIKLLYheIHjZ17jmHA7=s0"
+    }
+  ],
+  "typography": {
+    "family": "IBM Plex Sans",
+    "body": "Regular",
+    "headings": "Medium",
+    "source": "anguswww/compactdocs-private:store/build_assets.py",
+    "render_scale": 2
+  }
+}
