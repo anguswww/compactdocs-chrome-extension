@@ -225,3 +225,11 @@ test('layout notifications follow actual compact layout changes, without a mutat
   app.nodes.delete('compactdocs-layout-style'); app.observer();
   assert.equal(app.dispatched.length, 3);
 });
+
+test('overlays stack below Docs menus so context menus render on top', () => {
+  // Docs popups start at 999 (side-panel dropdowns); tab/heading menus use 1003.
+  const css = readFileSync(`${__dirname}/../compact.css`, 'utf8');
+  const levels = [...css.matchAll(/z-index:\s*(\d+)/g)].map(match => Number(match[1]));
+  assert.ok(levels.length > 0);
+  for (const level of levels) assert.ok(level > 991 && level < 999, `z-index ${level}`);
+});

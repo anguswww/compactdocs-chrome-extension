@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3
+
+- Show Google Docs context menus for document tabs and headings above the tabs overlay instead of underneath it.
+- Lower the overlay and edge target stacking order below all Docs popups, including side-panel dropdowns, tab drag previews, link bubbles and dialog backdrops.
+- Add a regression test that keeps overlay layers below Docs' popup range.
+
 ## 1.4.2
 
 - Replace the store screenshots with four images that preserve the published listing’s wording, layouts, colours, and proportional IBM Plex Sans fonts.
