@@ -230,7 +230,6 @@ def main():
     im.paste(mark, (60 * S, 52 * S), mark)
     text(im, (150, 82), 'CompactDocs', 30, '#ffffff', weight=650, width=88)
     text(im, (80, 200), 'Google Docs, fitted\nto narrow windows.', 84, '#ffffff', spacing=1.0, **HEAD)
-    text(im, (82, 410), 'Side panels are moved to the window edges. The page is fitted to the available width.', 24, TINT)
     save(im, 'promotional/marquee-promo.png')
 
     # Website images, from the same verified captures.

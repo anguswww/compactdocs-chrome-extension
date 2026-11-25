@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.4.5
 
 - New blue identity: icon, toolbar popup, website and store artwork.
 - Redesigned website and store screenshots, captured from the live example document with the real extension loaded (`scripts/capture-docs.mjs`).

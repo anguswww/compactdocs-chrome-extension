@@ -1,18 +1,28 @@
-# CompactDocs 1.4.4 uploads
+# CompactDocs 1.4.5 uploads
 
-## Extension update
+1.4.5 changes no behaviour. It ships the new blue icon and toolbar popup, so the package must be uploaded as a new version: the Chrome Web Store reads the extension's toolbar and store icons from the package, and the version number must increase.
 
-Upload `compactdocs-1.4.4.zip` as the new package in the Chrome Web Store developer dashboard. It contains the extension runtime and manifest, including the tighter Fit margins for overlay scrollbars. Do not upload the store-assets ZIP as an extension package.
+All changes are made in the [Chrome Web Store developer dashboard](https://chrome.google.com/webstore/devconsole) under **CompactDocs**.
 
-## Store images
+## 1. Package
 
-Extract `compactdocs-1.4.4-store-assets.zip`. Replace the listing screenshots with these four PNGs, in this order:
+Under **Package**, select **Upload new package** and choose `compactdocs-1.4.5.zip` (from `npm run package` or the GitHub release). Do not upload the store-assets ZIP as a package.
 
-1. `screenshots/01-hover-tabs.png`
-2. `screenshots/02-more-room.png`
-3. `screenshots/03-reclaim-space.png`
-4. `screenshots/04-three-settings.png`
+## 2. Store listing
 
-`icon-128.png` is the new blue store icon; upload it too. Files under `promotional/` are optional promotional uploads, not extra listing screenshots.
+Extract `compactdocs-1.4.5-store-assets.zip`. Under **Store listing**, then **Graphic assets**:
 
-Check the version and listing preview, then submit the update for review. Creating a GitHub release does not submit or publish a Chrome Web Store update.
+- **Store icon**: `icon-128.png` (the new blue icon).
+- **Screenshots**: delete the four existing images, then upload these in order:
+  1. `screenshots/01-hover-tabs.png`
+  2. `screenshots/02-more-room.png`
+  3. `screenshots/03-reclaim-space.png`
+  4. `screenshots/04-three-settings.png`
+- **Small promo tile**: `promotional/small-promo.png` (440 × 280).
+- **Marquee promo tile**: `promotional/marquee-promo.png` (1400 × 560). Optional.
+
+Select **Save draft**.
+
+## 3. Submit
+
+Check the preview, then select **Submit for review**. Listing images and the package are reviewed together. Creating a GitHub release does not submit or publish a Chrome Web Store update.
