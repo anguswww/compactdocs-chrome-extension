@@ -1,48 +1,48 @@
 {
   "icon-128.png": {
-    "sha256": "13a86dae4d7ff5683668e0a6b5c009affabc936bfdb3ef7888b40175a45c23c8",
+    "sha256": "59c36d006e6dd2c6bf40023b63007835ebb1fc3362a75e201af317586d023c90",
     "size": [
       128,
       128
     ]
   },
   "screenshots/01-hover-tabs.png": {
-    "sha256": "55affd1d0068664a987658c3f332ec6933c48dfd3add6d0e2b463e6c839201cb",
+    "sha256": "760aed1a50082bc961638927a406778fac32279a35fe7f92617e5d4fdfb47afc",
     "size": [
       1280,
       800
     ]
   },
   "screenshots/02-more-room.png": {
-    "sha256": "9b15531206f7da408d65d1f7697bbb11e17977c13739cb35bba4a1d9e5e7193c",
+    "sha256": "f8242796bc258e66ca4a3e7b5df54f4366a74027657290d1c99e345ae6077095",
     "size": [
       1280,
       800
     ]
   },
   "screenshots/03-reclaim-space.png": {
-    "sha256": "bf420ada410625a5cb3a353dda039266e5807f872ec4f1f7d2eab65215f90f35",
+    "sha256": "accf9b5ccca6823c71c2f597fa7fa0133f3471a872cbabfc01da677fb1c377df",
     "size": [
       1280,
       800
     ]
   },
-  "screenshots/04-fit-your-window.png": {
-    "sha256": "8e5a750d268bd5d7cad1814908535e50f905af9666388696ecd8e2ae7b7c6691",
+  "screenshots/04-three-settings.png": {
+    "sha256": "50244dab77d51c73a3b33f02e383be2035bbd4d1d039286fca8acf3962d84ceb",
     "size": [
       1280,
       800
     ]
   },
   "promotional/small-promo.png": {
-    "sha256": "75739c81391534652bdae9a6452bd85d9c52abe287e508f28c5b55953d62a68d",
+    "sha256": "093ca8be153f2bedf6773d1a9ca35c07e13e20c7836443405a8dbc2e66108e71",
     "size": [
       440,
       280
     ]
   },
   "promotional/marquee-promo.png": {
-    "sha256": "548ae98173c9a6ad06b0240dc4441ce71a2ef546bad51e1d4ffa5e169a771a39",
+    "sha256": "1151287fba89245ce43ffc9677d73b0657bedb08c017247032bb6cfee146f6a4",
     "size": [
       1400,
       560

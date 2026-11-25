@@ -20,7 +20,7 @@ No analytics, network requests, runtime dependencies, or document-content collec
 
 ## Install
 
-1. Download `compactdocs-1.4.4.zip` from [Releases](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest).
+1. Download `compactdocs-1.4.5.zip` from [Releases](https://github.com/anguswww/compactdocs-chrome-extension/releases/latest).
 2. Extract the ZIP to a folder you can keep on your computer.
 3. Open `chrome://extensions` and turn on **Developer mode**.
 4. Select **Load unpacked** and choose the extracted folder.
@@ -50,12 +50,12 @@ npm run check
 npm run package
 ```
 
-After editing `compact.css`, run `npm run build` to refresh the bundled `styles.js`. The package command rebuilds styles, runs tests and syntax checks, and writes `dist/compactdocs-1.4.4.zip`. The ZIP contains only the extension runtime, icons, and MIT license, not tests, marketing assets, or website files.
+After editing `compact.css`, run `npm run build` to refresh the bundled `styles.js`. The package command rebuilds styles, runs tests and syntax checks, and writes `dist/compactdocs-1.4.5.zip`. The ZIP contains only the extension runtime, icons, and MIT license, not tests, marketing assets, or website files.
 
 ## Releases and website
 
 - CI checks pull requests and pushes to `main`.
-- Pushing a matching version tag such as `v1.4.4` tests and packages the extension, then publishes a GitHub release with separate extension and store-asset ZIPs plus SHA-256 checksums.
+- Pushing a matching version tag such as `v1.4.5` tests and packages the extension, then publishes a GitHub release with separate extension and store-asset ZIPs plus SHA-256 checksums.
 - Website source lives in `site/`. The website workflow keeps `gh-pages` as the generated deployment branch. GitHub Pages deployment is enabled with the `PAGES_ENABLED` repository variable after Pages is configured.
 - GitHub Pages must be available for the repository's visibility and account plan. A private repo on an unsupported plan cannot publish the site. The source and deployment branch remain ready.
 
@@ -67,4 +67,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for release and Pages setup instructions,
 
 [MIT](LICENSE), copyright 2026 Angus Wilson. Google Docs is a trademark of Google LLC. CompactDocs is independent of Google and is not affiliated with or endorsed by it.
 
-Generate store artwork with `npm run assets:store` (requires uv and Pillow as pinned in the script). The outputs include `dist/compactdocs-1.4.4-store-assets.zip`. This is separate from the extension package: extract it and upload its four numbered PNGs in the store dashboard. See [upload instructions](store/UPLOAD.md).
+Generate store artwork with `npm run assets:store` (requires uv and Pillow as pinned in the script). The outputs include `dist/compactdocs-1.4.5-store-assets.zip`. This is separate from the extension package: extract it and upload its four numbered PNGs in the store dashboard. See [upload instructions](store/UPLOAD.md).

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.5
+
+- New blue identity: icon, toolbar popup, website and store artwork.
+- Redesigned website and store screenshots, captured from the live example document with the real extension loaded (`scripts/capture-docs.mjs`).
+
 ## 1.4.4
 
 - With overlay scrollbars (the macOS default), reclaim the empty strip Google Docs leaves right of the page at Fit, so both sides keep only Docs' ~20px page margin. Docs' page-count badge stays in view.
