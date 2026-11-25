@@ -50,7 +50,7 @@ Publish the accompanying privacy policy at a stable public URL and provide that 
 - [ ] Test the final packaged version in Chrome with a disposable sample Google Doc, including both panel overlays, keyboard access, all settings, narrow windows, manual zoom, and pageless mode.
 - [x] Replace outdated screenshots with fresh installed 1.4.0 captures, including the left-positioned narrow editor, actual popup, and explicit edge-hover explanation. See `SCREENSHOTS.md` for provenance and limits.
 - [x] Prepare five 1280 × 800 RGB screenshots and one optional hover alternative. Choose five for upload.
-- [x] Prepare the green store icon and matching 16, 32, 48 and 128 pixel runtime PNGs.
+- [x] Prepare the blue store icon and matching 16, 32, 48 and 128 pixel runtime PNGs.
 - [ ] Enable GitHub Pages on a supported visibility/plan, verify https://anguswww.github.io/compactdocs-chrome-extension/privacy.html is public, and enter it in the dashboard.
 - [ ] Verify permission justifications and privacy answers against the final package, including locally processed page data.
 - [x] Package the extension files, excluding tests, store drafts, and unrelated files. Version 1.4.1 is packaged in `dist/compactdocs-1.4.1.zip`.

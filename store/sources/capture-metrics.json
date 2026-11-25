@@ -1,65 +1,79 @@
 {
   "fit-620": {
+    "viewport": {
+      "width": 620,
+      "height": 900
+    },
+    "zoom": "Fit",
     "fonts": "loaded",
+    "page": {
+      "x": 19.546875,
+      "width": 581,
+      "right": 600.546875
+    },
     "gutters": {
-      "left": 19.359375,
-      "right": 51.140625
+      "left": 19.546875,
+      "right": 19.453125
     },
     "hover": false,
     "nativeLayoutRefreshed": true,
-    "page": {
-      "right": 568.859375,
-      "width": 549.5,
-      "x": 19.359375
-    },
-    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0#heading=h.3tfvmvwr2ivn",
-    "viewport": {
-      "height": 900,
-      "width": 620
-    },
-    "zoom": "Fit",
-    "sha256": "3cbc7fde031a14649dee5cc8551cf58c51ccaefbe6d12eba932d10dc2e38b896"
+    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0",
+    "sha256": "8df2746241ecd21bff9b05d71a57dc6667303dfecaa187964810ff34bd43dd3f"
   },
   "fit-780": {
+    "viewport": {
+      "width": 780,
+      "height": 900
+    },
+    "zoom": "Fit",
     "fonts": "loaded",
+    "page": {
+      "x": 20.515625,
+      "width": 739,
+      "right": 759.515625
+    },
     "gutters": {
-      "left": 20.328125,
-      "right": 52.171875
+      "left": 20.515625,
+      "right": 20.484375
     },
     "hover": false,
     "nativeLayoutRefreshed": true,
-    "page": {
-      "right": 727.828125,
-      "width": 707.5,
-      "x": 20.328125
-    },
-    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0#heading=h.3tfvmvwr2ivn",
-    "viewport": {
-      "height": 900,
-      "width": 780
-    },
-    "zoom": "Fit",
-    "sha256": "b8ca523abcabc1d40c46d451523d9ba720c360f72eea18f3fb2bcb3287ece780"
+    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0",
+    "sha256": "48f5cc47600e58600cdbcdc5649478fbd45485316e1165443688fa6a421e4095"
   },
   "fit-tabs-780": {
+    "viewport": {
+      "width": 780,
+      "height": 900
+    },
+    "zoom": "Fit",
     "fonts": "loaded",
+    "page": {
+      "x": 20.515625,
+      "width": 739,
+      "right": 759.515625
+    },
     "gutters": {
-      "left": 20.328125,
-      "right": 52.171875
+      "left": 20.515625,
+      "right": 20.484375
     },
     "hover": true,
     "nativeLayoutRefreshed": true,
-    "page": {
-      "right": 727.828125,
-      "width": 707.5,
-      "x": 20.328125
-    },
-    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0#heading=h.3tfvmvwr2ivn",
+    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0",
+    "sha256": "1b634328d15af4e6ca8c4d8b53cf6a0c13237f7f6c25ca81596084a3ee6a8bef"
+  },
+  "default-780": {
     "viewport": {
-      "height": 900,
-      "width": 780
+      "width": 780,
+      "height": 900
     },
-    "zoom": "Fit",
-    "sha256": "3f9dd677eca25bafb50092332226e5da5addbfe43320ada2c60ed099653456ea"
+    "zoom": "100%",
+    "page": {
+      "x": 301,
+      "width": 816,
+      "visible": 479
+    },
+    "source": "https://docs.google.com/document/d/1tK9n3QfdXDl0SGw_8iidEQX0bsvrI9Ebxdb52ReTprw/edit?tab=t.0",
+    "sha256": "cd9552fdaf082eb0e0f0be760ba955a91895d293eae858d77a997afd3e443e86"
   }
 }

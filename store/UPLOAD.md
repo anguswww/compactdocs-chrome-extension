@@ -11,8 +11,8 @@ Extract `compactdocs-1.4.4-store-assets.zip`. Replace the listing screenshots wi
 1. `screenshots/01-hover-tabs.png`
 2. `screenshots/02-more-room.png`
 3. `screenshots/03-reclaim-space.png`
-4. `screenshots/04-fit-your-window.png`
+4. `screenshots/04-three-settings.png`
 
-`icon-128.png` is the store icon. Files under `promotional/` are optional promotional uploads, not extra listing screenshots.
+`icon-128.png` is the new blue store icon; upload it too. Files under `promotional/` are optional promotional uploads, not extra listing screenshots.
 
 Check the version and listing preview, then submit the update for review. Creating a GitHub release does not submit or publish a Chrome Web Store update.
