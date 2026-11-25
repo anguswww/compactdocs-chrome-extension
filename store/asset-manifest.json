@@ -7,42 +7,42 @@
     ]
   },
   "screenshots/01-hover-tabs.png": {
-    "sha256": "1b3cf26817ba87a287539a3ef9e7c495ae52511c4c274fbf2bef0c58b59010b9",
+    "sha256": "760aed1a50082bc961638927a406778fac32279a35fe7f92617e5d4fdfb47afc",
     "size": [
       1280,
       800
     ]
   },
   "screenshots/02-more-room.png": {
-    "sha256": "43e50afb7140c6c32e04af4e33701dabd3139af4c024cdbe108ac05c6d115bfd",
+    "sha256": "f8242796bc258e66ca4a3e7b5df54f4366a74027657290d1c99e345ae6077095",
     "size": [
       1280,
       800
     ]
   },
   "screenshots/03-reclaim-space.png": {
-    "sha256": "72878a318772a4b49a6370e5977c13a598a37d6c6f33bf9ff4b66914effcb321",
+    "sha256": "accf9b5ccca6823c71c2f597fa7fa0133f3471a872cbabfc01da677fb1c377df",
     "size": [
       1280,
       800
     ]
   },
   "screenshots/04-three-settings.png": {
-    "sha256": "185a023f99cc4891a12b896daff812e188ac51db6b014f4d2f36317d2797d992",
+    "sha256": "50244dab77d51c73a3b33f02e383be2035bbd4d1d039286fca8acf3962d84ceb",
     "size": [
       1280,
       800
     ]
   },
   "promotional/small-promo.png": {
-    "sha256": "a039e0a82e6881a126a1e7091df2b7c67c8285d1cb2a1ec2fa3e857dd7045395",
+    "sha256": "093ca8be153f2bedf6773d1a9ca35c07e13e20c7836443405a8dbc2e66108e71",
     "size": [
       440,
       280
     ]
   },
   "promotional/marquee-promo.png": {
-    "sha256": "f55105dab2ceefbd3b023ada4be6e9b349a766a078d92587aa33e598f5f3d3ce",
+    "sha256": "b6e5a220efa082a5fee56597fe56d98bd09aeb4bed372ae3fb9dff11887abbe6",
     "size": [
       1400,
       560

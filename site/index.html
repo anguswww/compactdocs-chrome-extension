@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CompactDocs is a Chrome extension that makes Google Docs comfortable in half a screen. It tucks the side panels into the window edges and fits the page to the width you have.">
+  <meta name="description" content="CompactDocs is a Chrome extension for Google Docs in narrow windows. Side panels are moved to the window edges and the page is fitted to the available width.">
   <meta name="theme-color" content="#e9edf3">
   <title>CompactDocs for Google Docs</title>
   <link rel="canonical" href="https://anguswww.github.io/compactdocs-chrome-extension/">
@@ -32,35 +32,35 @@
           <button class="demo-edge" type="button" aria-pressed="false" aria-label="Show document tabs"></button>
         </div>
         <div class="ruler" style="--from:2.6%;--to:97.4%" aria-hidden="true"></div>
-        <figcaption><span class="demo-hint"><span class="hint-pointer">Point at the window’s left edge to open the document tabs.</span><span class="hint-touch">Tap the window’s left edge to open the document tabs.</span></span> <span>780&thinsp;px window. The whole page fits.</span></figcaption>
+        <figcaption><span class="demo-hint"><span class="hint-pointer">Hover over the left edge of the window to reveal the document tabs.</span><span class="hint-touch">Tap the left edge of the window to reveal the document tabs.</span></span> <span>780&thinsp;px window, full page width visible.</span></figcaption>
       </figure>
 
       <div class="hero-copy">
-        <h1 id="hero-title">Google Docs, made for half a screen.</h1>
-        <p class="lead">Keep a document open beside your research, notes or a call. CompactDocs tucks the side panels into the window’s edges and fits the page to the width you have.</p>
+        <h1 id="hero-title">Google Docs, fitted to narrow windows.</h1>
+        <p class="lead">Side panels are moved to the edges of the window, and the page is fitted to the available width. CompactDocs is designed for documents kept open beside other work.</p>
         <div class="actions">
           <a class="button" href="https://chromewebstore.google.com/detail/compactdocs/lilnjbpiikjfknobepdnlepjgalgdcfi">Add to Chrome</a>
           <a class="quiet-link" href="https://github.com/anguswww/compactdocs-chrome-extension/releases/latest">Download from GitHub</a>
         </div>
-        <p class="fine-print">Free on the Chrome Web Store, with automatic updates. Version 1.4.4.</p>
+        <p class="fine-print">Available free on the Chrome Web Store, with automatic updates. Current version: 1.4.4.</p>
       </div>
     </section>
 
     <section class="compare wrap" id="how-it-works" aria-labelledby="compare-title">
       <div class="section-head">
-        <h2 id="compare-title">Same window. More&nbsp;document.</h2>
-        <p>In a narrow window, Docs keeps its tabs column open and pushes the page off to the side. CompactDocs gives that room back to the page and selects Docs’ own Fit zoom.</p>
+        <h2 id="compare-title">More of the page, in the same&nbsp;window.</h2>
+        <p>In a narrow window, the document tabs column remains open and the page is pushed partly out of view. With CompactDocs, that space is returned to the page and Docs’ native Fit zoom is applied.</p>
       </div>
       <div class="pair">
         <figure>
           <div class="window"><img src="assets/docs-default-780.webp" width="1120" height="1292" alt="Google Docs without CompactDocs in the same 780-pixel window. The tabs column takes the left side and the page is cut off on the right." loading="lazy"></div>
           <div class="ruler" style="--from:38.6%;--to:100%" aria-hidden="true"></div>
-          <figcaption><strong>Without CompactDocs</strong> 59% of the page width is in view, at 100% zoom.</figcaption>
+          <figcaption><strong>Without CompactDocs</strong> 59% of the page width is visible at 100% zoom.</figcaption>
         </figure>
         <figure>
           <div class="window"><img src="assets/docs-fit-780.webp" width="1120" height="1292" alt="The same document with CompactDocs. The full page width is visible at Fit zoom." loading="lazy"></div>
           <div class="ruler" style="--from:2.6%;--to:97.4%" aria-hidden="true"></div>
-          <figcaption><strong>With CompactDocs</strong> The full page width is in view, at Fit zoom.</figcaption>
+          <figcaption><strong>With CompactDocs</strong> The full page width is visible at Fit zoom.</figcaption>
         </figure>
       </div>
     </section>
@@ -75,21 +75,21 @@
         <div class="mini-labels"><span>Document tabs and outline</span><span>Google side panel</span></div>
       </div>
       <div class="edges-copy">
-        <h2 id="edges-title">Panels wait at the edges.</h2>
-        <p>Point anywhere along the left edge of the window for document tabs and the outline, or the right edge for the Google side panel. The targets are invisible and run the full height of the window, so there’s nothing to aim for.</p>
-        <p>A panel opens over the page, so your text doesn’t move, and closes when you move away. A short delay stops it opening when you’re just passing by.</p>
-        <p>From the keyboard, press <kbd>Tab</kbd> until an edge is focused and its panel opens. Press <kbd>Esc</kbd> to close it.</p>
+        <h2 id="edges-title">Panels are kept at the window edges.</h2>
+        <p>Document tabs and the outline are revealed from the left edge of the window. The Google side panel is revealed from the right edge. Each edge target is invisible and spans the full height of the window.</p>
+        <p>Panels are shown over the page, so the document does not shift, and are hidden when the pointer moves away. A short delay prevents accidental reveals.</p>
+        <p>Keyboard access is supported. A panel is opened when its edge receives focus with <kbd>Tab</kbd>, and closed with <kbd>Esc</kbd>.</p>
       </div>
     </section>
 
     <section class="settings wrap" aria-labelledby="settings-title">
       <div class="settings-copy">
-        <h2 id="settings-title">Three switches. That’s the whole setup.</h2>
-        <p>Open CompactDocs from the Chrome toolbar to turn each one on or off. They’re all on to start, and they’re saved in your browser.</p>
+        <h2 id="settings-title">Three settings, stored locally.</h2>
+        <p>Each setting can be changed from the CompactDocs toolbar popup. All three are enabled by default and are stored in the browser.</p>
         <dl class="settings-list">
-          <div><dt>Document tabs</dt><dd>Keep the tabs column tucked away. Reveal it at the left edge.</dd></div>
-          <div><dt>Google side panel</dt><dd>Keep the side panel tucked away. Reveal it at the right edge.</dd></div>
-          <div><dt>Fit page to window</dt><dd>Use Docs’ Fit zoom for paged documents in narrow windows. Choosing a zoom percentage yourself pauses it. Pageless documents keep their own zoom.</dd></div>
+          <div><dt>Document tabs</dt><dd>The tabs column is kept hidden and revealed at the left edge.</dd></div>
+          <div><dt>Google side panel</dt><dd>The side panel is kept hidden and revealed at the right edge.</dd></div>
+          <div><dt>Fit page to window</dt><dd>Docs’ native Fit zoom is applied to paged documents in narrow windows. Automatic fitting is paused when a zoom percentage is selected manually. Pageless documents retain their own zoom.</dd></div>
         </dl>
       </div>
       <figure class="popup-shot">
@@ -99,19 +99,19 @@
 
     <section class="install wrap" aria-labelledby="install-title">
       <div class="install-copy">
-        <h2 id="install-title">Make room for your next document.</h2>
+        <h2 id="install-title">Installation</h2>
         <ol class="steps">
-          <li>Add CompactDocs from the Chrome Web Store.</li>
-          <li>Reload any Google Docs documents you already have open.</li>
-          <li>Snap Chrome to one side of your screen and start writing.</li>
+          <li>Install CompactDocs from the Chrome Web Store.</li>
+          <li>Reload any Google Docs documents that are already open.</li>
+          <li>Position the Chrome window beside other work.</li>
         </ol>
         <a class="button" href="https://chromewebstore.google.com/detail/compactdocs/lilnjbpiikjfknobepdnlepjgalgdcfi">Add to Chrome</a>
-        <p class="fine-print">To install by hand, download the ZIP from <a href="https://github.com/anguswww/compactdocs-chrome-extension/releases/latest">GitHub releases</a> and extract it. In <code>chrome://extensions</code>, turn on Developer mode, choose <strong>Load unpacked</strong>, and select the folder. Changes to the Docs interface, and Docs in languages other than English, can affect compatibility.</p>
+        <p class="fine-print">For manual installation, the release ZIP is available from <a href="https://github.com/anguswww/compactdocs-chrome-extension/releases/latest">GitHub releases</a>. After extraction, Developer mode should be enabled in <code>chrome://extensions</code>, <strong>Load unpacked</strong> selected, and the extracted folder chosen. Compatibility may be affected by changes to the Docs interface and by interface languages other than English.</p>
       </div>
       <aside class="privacy-note" aria-labelledby="local-title">
-        <h3 id="local-title">Your documents stay yours.</h3>
-        <p>CompactDocs changes how Docs is laid out on your screen, never what’s in your document. It makes no network requests, runs no analytics and reads no document text.</p>
-        <a href="privacy.html">Read the privacy policy</a>
+        <h3 id="local-title">Document content is not accessed.</h3>
+        <p>CompactDocs changes only how Docs is laid out on screen. Document content is not modified or read, no network requests are made, and no analytics are collected.</p>
+        <a href="privacy.html">Privacy policy</a>
       </aside>
     </section>
   </main>

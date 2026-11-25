@@ -2,10 +2,10 @@
 
 The four 1280 × 800 screenshots and two promotional tiles use the website's design system: desk `#e9edf3`, ink `#121a33`, graphite `#4b556b`, rule `#c7d0de`, cobalt `#2b55d9`, and Archivo (variable; headings at weight 640, width 70). `listing-reference.json` records each image's headline and labels, and the listing image it replaces. The generator checks that copy is present.
 
-1. `01-hover-tabs.png`: “Your tabs are one hover away.” The same window twice, with a cobalt edge marker on the closed view and the tabs overlay open on the other.
-2. `02-more-room.png`: the 620 px window tiled left, “Google Docs, made for half a screen.” right.
-3. `03-reclaim-space.png`: “Same window. More document.” Native 100% against CompactDocs at the same 780 px width, with rulers marking the measured visible page span.
-4. `04-three-settings.png`: “Three switches. That’s the whole setup.” The real settings popup over the fitted window.
+1. `01-hover-tabs.png`: “Document tabs, one hover away.” The same window twice, with a cobalt edge marker on the closed view and the tabs overlay open on the other.
+2. `02-more-room.png`: the 620 px window tiled left, “Google Docs, fitted to narrow windows.” right.
+3. `03-reclaim-space.png`: “More of the page, in the same window.” Native 100% against CompactDocs at the same 780 px width, with rulers marking the measured visible page span.
+4. `04-three-settings.png`: “Three settings, stored locally.” The real settings popup over the fitted window.
 
 ## Captures
 

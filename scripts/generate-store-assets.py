@@ -172,9 +172,9 @@ def main():
 
     # 1. The hover reveal: the same window before and while pointing at the edge.
     im = canvas()
-    text(im, (64, 58), 'Your tabs are one hover away.', 58, **HEAD)
-    text(im, (64, 140), 'Point at the left edge of the window. The tabs open over the page.', 21, GRAPHITE)
-    text(im, (64, 214), 'Point at the left edge', 18, INK, **LABEL)
+    text(im, (64, 58), 'Document tabs, one hover away.', 58, **HEAD)
+    text(im, (64, 140), 'Tabs are revealed over the page when the pointer reaches the left edge.', 21, GRAPHITE)
+    text(im, (64, 214), 'Hover over the left edge', 18, INK, **LABEL)
     text(im, (668, 214), 'Document tabs', 18, INK, **LABEL)
     window(im, 'fit-780', (64, 250, 548, 490), crop_top=114)
     window(im, 'fit-tabs-780', (668, 250, 548, 490), crop_top=114)
@@ -185,15 +185,15 @@ def main():
     # 2. The pitch: a narrow Docs window, tiled beside the headline.
     im = canvas()
     window(im, 'fit-620', (64, 64, 520, 736), crop_top=0, shadow=True)
-    bottom = text(im, (664, 214), 'Google Docs,\nmade for half\na screen.', 80, spacing=0.98, **HEAD)
-    text(im, (666, bottom + 30), 'Side panels tucked into the edges.\nThe page fitted to your window.', 23, GRAPHITE, spacing=1.45)
+    bottom = text(im, (664, 214), 'Google Docs,\nfitted to narrow\nwindows.', 80, spacing=0.98, **HEAD)
+    text(im, (666, bottom + 30), 'Side panels are moved to the window edges.\nThe page is fitted to the available width.', 23, GRAPHITE, spacing=1.45)
     wordmark(im, 670, 690, 20)
     save(im, 'screenshots/02-more-room.png')
 
     # 3. Before and after, at the same window width, with measured page spans.
     im = canvas()
-    text(im, (64, 58), 'Same window. More document.', 58, **HEAD)
-    text(im, (64, 140), f'Both windows are 780 pixels wide. Without CompactDocs, {visible}% of the page is in view.', 21, GRAPHITE)
+    text(im, (64, 58), 'More of the page, in the same window.', 58, **HEAD)
+    text(im, (64, 140), f'Both windows are 780 pixels wide. Without CompactDocs, {visible}% of the page width is visible.', 21, GRAPHITE)
     text(im, (64, 214), 'Without CompactDocs', 18, GRAPHITE, **LABEL)
     text(im, (668, 214), 'With CompactDocs', 18, COBALT, weight=620, width=100)
     window(im, 'default-780', (64, 250, 548, 466), shadow=False)
@@ -205,8 +205,8 @@ def main():
     # 4. Settings: the real popup over the fitted window.
     im = canvas()
     window(im, 'fit-620', (560, 64, 520, 736))
-    bottom = text(im, (64, 214), 'Three switches.\nThat’s the\nwhole setup.', 64, spacing=1.0, **HEAD)
-    text(im, (66, bottom + 30), 'Tuck the tabs, tuck the side panel,\nfit the page. Saved in your browser.', 22, GRAPHITE, spacing=1.45)
+    bottom = text(im, (64, 214), 'Three settings,\nstored locally.', 64, spacing=1.0, **HEAD)
+    text(im, (66, bottom + 30), 'Tabs, side panel and page fitting can\neach be enabled from the toolbar popup.', 22, GRAPHITE, spacing=1.45)
     popup = source('popup')  # Already 2x: 320 x 455 CSS px.
     px, py = 900 * S, 300 * S
     layer = Image.new('RGBA', im.size)
@@ -222,15 +222,15 @@ def main():
     im = canvas(440, 280, COBALT)
     mark = icon(84 * S)
     im.paste(mark, (14 * S, 14 * S), mark)
-    text(im, (30, 112), 'Google Docs,\nmade for half\na screen.', 40, '#ffffff', spacing=1.0, **HEAD)
+    text(im, (30, 112), 'Google Docs,\nfitted to narrow\nwindows.', 40, '#ffffff', spacing=1.0, **HEAD)
     save(im, 'promotional/small-promo.png')
     im = canvas(1400, 560, COBALT)
     window(im, 'fit-620', (860, 72, 460, 488), radius=14, shadow=False)
     mark = icon(96 * S)
     im.paste(mark, (60 * S, 52 * S), mark)
     text(im, (150, 82), 'CompactDocs', 30, '#ffffff', weight=650, width=88)
-    text(im, (80, 200), 'Google Docs, made\nfor half a screen.', 84, '#ffffff', spacing=1.0, **HEAD)
-    text(im, (82, 410), 'Side panels tucked into the edges. The page fitted to your window.', 24, TINT)
+    text(im, (80, 200), 'Google Docs, fitted\nto narrow windows.', 84, '#ffffff', spacing=1.0, **HEAD)
+    text(im, (82, 410), 'Side panels are moved to the window edges. The page is fitted to the available width.', 24, TINT)
     save(im, 'promotional/marquee-promo.png')
 
     # Website images, from the same verified captures.

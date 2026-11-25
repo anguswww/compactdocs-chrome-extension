@@ -4,9 +4,9 @@
   "screenshots": [
     {
       "file": "01-hover-tabs.png",
-      "headline": "Your tabs are one hover away.",
+      "headline": "Document tabs, one hover away.",
       "labels": [
-        "Point at the left edge",
+        "Hover over the left edge",
         "Document tabs"
       ],
       "replaces": "01-hover-tabs.png",
@@ -14,16 +14,16 @@
     },
     {
       "file": "02-more-room.png",
-      "headline": "Google Docs, made for half a screen.",
+      "headline": "Google Docs, fitted to narrow windows.",
       "labels": [
-        "Side panels tucked into the edges. The page fitted to your window."
+        "Side panels are moved to the window edges. The page is fitted to the available width."
       ],
       "replaces": "02-more-room.png",
       "previous_reference_url": "https://lh3.googleusercontent.com/-89NC1k-5lPIZA2Hsnmik7edYUjqq0sVXAg8YgKQ6S7QlxIcPmFmQmBarvVWg5wsDSk8idCSMl5chXATqKbn36OPZb0=s0"
     },
     {
       "file": "03-reclaim-space.png",
-      "headline": "Same window. More document.",
+      "headline": "More of the page, in the same window.",
       "labels": [
         "Without CompactDocs",
         "With CompactDocs"
@@ -33,9 +33,9 @@
     },
     {
       "file": "04-three-settings.png",
-      "headline": "Three switches. That’s the whole setup.",
+      "headline": "Three settings, stored locally.",
       "labels": [
-        "Tuck the tabs, tuck the side panel, fit the page. Saved in your browser."
+        "Tabs, side panel and page fitting can each be enabled from the toolbar popup."
       ],
       "replaces": "04-fit-your-window.png",
       "previous_reference_url": "https://lh3.googleusercontent.com/Ob82YxpIWxJQBigqDc6lpHVN52AqMcj9lNi2oVAXsz3LsSvwhYMspGTG8vINzRRrzNkangIKLLYheIHjZ17jmHA7=s0"
