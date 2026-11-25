@@ -14,6 +14,7 @@ function boot(zoom = '100%', options = {}) {
     blur() {}
     dispatchEvent(event) { listeners.get(event.type)?.({target:this,isTrusted:false}); }
     getAttribute() { return null; }
+    remove() {}
     getBoundingClientRect() { return { width: 800 * parseFloat(input.value) / 100 }; }
   }
   const input = new Element();
@@ -24,22 +25,25 @@ function boot(zoom = '100%', options = {}) {
   root.style = {getPropertyValue: k => props.get(k), setProperty: (k,v) => props.set(k,v)};
   root.classList = {contains: k => classes.has(k), toggle: (k,v) => v ? classes.add(k) : classes.delete(k)};
   const body = new Element();
+  body.appendChild = () => {};
   body.classList = {contains: k => k === 'docs-body-pageless' && options.pageless};
   const head = {appendChild: n => nodes.set(n.id,n)};
   const doc = {
     addEventListener: (type, cb) => listeners.set(type, cb),
     dispatchEvent(event) { dispatched.push(event.type); },
     documentElement: root, head, body, activeElement: null,
-    getElementById: id => nodes.get(id), createElement: () => new Element(),
+    getElementById: id => nodes.get(id), createElement: () => Object.assign(new Element(), options.geometry?.probe),
     querySelectorAll: () => [],
     querySelector: selector => ({
       '#zoomSelect': combo, '#zoomSelect input': input, '.canvas-first-page': options.noEditor ? null : new Element(),
       '#docs-editor': options.noEditor ? null : {style:{width:`${options.width || 768}px`}},
-      '.navigation-widget': {classList:{contains:()=>true}}
+      '.navigation-widget': {classList:{contains:()=>true}},
+      ...options.geometry
     })[selector]
   };
   const context = vm.createContext({
     document: doc, HTMLElement: Element, Event: class { constructor(type) { this.type=type; } }, MouseEvent: class {}, KeyboardEvent: class { constructor(type) { this.type=type; } },
+    getComputedStyle: () => ({getPropertyValue: k => props.get(k) || ''}),
     window: {get innerWidth(){return options.width || 768;}, addEventListener(){}, dispatchEvent(){}},
     requestAnimationFrame: cb => frames.push(cb), setTimeout: cb => timers.push(cb),
     MutationObserver: class { constructor(cb) {observer=cb;} observe(target) {assert.equal(target,root);} },
@@ -232,4 +236,29 @@ test('overlays stack below Docs menus so context menus render on top', () => {
   const levels = [...css.matchAll(/z-index:\s*(\d+)/g)].map(match => Number(match[1]));
   assert.ok(levels.length > 0);
   for (const level of levels) assert.ok(level > 991 && level < 999, `z-index ${level}`);
+});
+
+// Live 700px Fit geometry with overlay scrollbars: Docs leaves 19.84px left of
+// the page after the collapsed 73px gutter, but 51.3px before the appview edge.
+function reserveGeometry({overlay = true, left = 19.84, right = 648.7} = {}) {
+  const rect = r => ({getBoundingClientRect: () => r});
+  return {
+    '.left-sidebar-container:has(.navigation-widget-hidden)': {style:{width:'73px'}},
+    '#kix-appview': rect({left:-73, right:700}),
+    '.kix-page-paginated': rect({left, right, width:right-left}),
+    probe: {offsetWidth:100, clientWidth: overlay ? 100 : 84}
+  };
+}
+test('overlay scrollbars reclaim Docs\' empty Fit strip right of the page', () => {
+  const app = boot('Fit', {width:700, geometry: reserveGeometry()});
+  assert.equal(app.root.style.getPropertyValue('--compactdocs-fit-reserve'), '31px');
+  assert.equal(app.root.classList.contains('compactdocs-fit-reserve'), true);
+  assert.match(app.nodes.get('compactdocs-layout-style').textContent, /width: calc\(100% \+ var\(--compactdocs-tabs-gutter, 73px\) \+ var\(--compactdocs-fit-reserve, 0px\)\)/);
+});
+test('classic scrollbars and numeric zoom keep the visible scrollbar layout', () => {
+  const classic = boot('Fit', {width:700, geometry: reserveGeometry({overlay:false})});
+  assert.equal(classic.root.classList.contains('compactdocs-fit-reserve'), false);
+  assert.ok(!classic.root.style.getPropertyValue('--compactdocs-fit-reserve'));
+  const numeric = boot('100%', {width:1400, settings:{fitToWindow:false}, geometry: reserveGeometry()});
+  assert.equal(numeric.root.classList.contains('compactdocs-fit-reserve'), false);
 });

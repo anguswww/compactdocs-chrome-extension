@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.4
+
+- With overlay scrollbars (the macOS default), reclaim the empty strip Google Docs leaves right of the page at Fit, so both sides keep only Docs' ~20px page margin. Docs' page-count badge stays in view.
+- With always-visible scrollbars (typical on Windows and Linux), keep the scrollbar and the existing layout.
+
 ## 1.4.3
 
 - Show Google Docs context menus for document tabs and headings above the tabs overlay instead of underneath it.

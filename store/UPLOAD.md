@@ -1,12 +1,12 @@
-# CompactDocs 1.4.3 uploads
+# CompactDocs 1.4.4 uploads
 
 ## Extension update
 
-Upload `compactdocs-1.4.3.zip` as the new package in the Chrome Web Store developer dashboard. It contains the extension runtime and manifest, including the fix for menus hidden under the hover overlays. Do not upload the store-assets ZIP as an extension package.
+Upload `compactdocs-1.4.4.zip` as the new package in the Chrome Web Store developer dashboard. It contains the extension runtime and manifest, including the tighter Fit margins for overlay scrollbars. Do not upload the store-assets ZIP as an extension package.
 
 ## Store images
 
-Extract `compactdocs-1.4.3-store-assets.zip`. Replace the listing screenshots with these four PNGs, in this order:
+Extract `compactdocs-1.4.4-store-assets.zip`. Replace the listing screenshots with these four PNGs, in this order:
 
 1. `screenshots/01-hover-tabs.png`
 2. `screenshots/02-more-room.png`
