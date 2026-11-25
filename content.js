@@ -70,6 +70,37 @@
     input.blur();
     if (focused !== input && focused instanceof HTMLElement) focused.focus({ preventScroll: true });
   }
+  // Overlay scrollbars (the macOS default) take no layout width. Probe a plain
+  // element, since the editor's own scrollbar may be hidden by our CSS.
+  let overlayScrollbars = null;
+  function probeScrollbars() {
+    if (!document.body) return;
+    const probe = document.createElement('div');
+    probe.style.cssText = 'position:absolute;top:-200px;width:100px;height:100px;overflow:scroll;visibility:hidden';
+    document.body.appendChild(probe);
+    overlayScrollbars = probe.offsetWidth === probe.clientWidth;
+    probe.remove();
+  }
+  // At Fit, Docs leaves the page margin after the collapsed gutter, but the
+  // margin plus an empty strip before the appview's right edge. Measured in
+  // appview coordinates, the strip barely changes as the reserve widens the
+  // appview, and small differences are ignored, so this settles immediately.
+  function fitReserve(sidebar) {
+    if (!sidebar || !overlayScrollbars || document.body.classList.contains('docs-body-pageless')) return 0;
+    if (document.querySelector('#zoomSelect input')?.value !== 'Fit') return 0;
+    if (typeof compactDocsHover !== 'undefined' && compactDocsHover.isOpen()) return null;
+    const view = document.querySelector('#kix-appview');
+    const page = document.querySelector('.kix-page-paginated');
+    const gutter = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--compactdocs-tabs-gutter'));
+    if (!view || !page || !(gutter >= 0)) return null;
+    const v = view.getBoundingClientRect();
+    const p = page.getBoundingClientRect();
+    if (!p.width) return null;
+    const left = p.left - v.left - gutter;
+    const right = v.right - p.right;
+    if (left < 0 || right < 0) return null;
+    return Math.round(Math.min(Math.max(right - left, 0), 64));
+  }
   function apply() {
     if (!initialized) return;
     const root = document.documentElement;
@@ -133,6 +164,14 @@
         changed = true;
       }
     }
+    if (overlayScrollbars === null) probeScrollbars();
+    const reserve = fitReserve(sidebar);
+    const current = parseFloat(root.style.getPropertyValue('--compactdocs-fit-reserve')) || 0;
+    if (reserve !== null && (reserve === 0 ? current !== 0 : Math.abs(reserve - current) > 1)) {
+      root.style.setProperty('--compactdocs-fit-reserve', `${reserve}px`);
+      root.classList.toggle('compactdocs-fit-reserve', reserve > 0);
+      changed = true;
+    }
     if (typeof compactDocsHover !== 'undefined') compactDocsHover.update(settings, activate);
     if (changed) {
       window.dispatchEvent(new Event('resize'));
@@ -170,7 +209,9 @@
   document.addEventListener('focusout', event => {
     if (event.target === document.querySelector('#zoomSelect input')) schedule();
   });
-  window.addEventListener('resize', schedule);
+  // Re-probe on real resizes only: a display or pointer change can switch the
+  // scrollbar style, while our own synthetic resize events cannot.
+  window.addEventListener('resize', event => { if (event.isTrusted) overlayScrollbars = null; schedule(); });
   new MutationObserver(schedule).observe(document.documentElement, {
     childList: true, subtree: true, attributes: true,
     attributeFilter: ['class', 'style', 'aria-label', 'data-tooltip']

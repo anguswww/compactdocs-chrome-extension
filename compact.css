@@ -25,11 +25,19 @@ html.compactdocs-compact-tabs .miniChapterSwitcherContainerView {
 /* Docs reserves the collapsed rail inside its canvas layout. Reclaim it at
    the appview, the common coordinate origin used for pointer hit testing,
    ruler, canvases and carets. Moving only the editor moves the drawing but
-   leaves hit testing at the old origin, placing clicks one gutter to the left. */
+   leaves hit testing at the old origin, placing clicks one gutter to the left.
+   With overlay scrollbars, Docs' Fit still reserves an empty strip right of
+   the page. The fit reserve extends the appview past the window by that strip,
+   so both sides keep only Docs' page margin. Classic scrollbars stay visible. */
 html.compactdocs-compact-tabs #kix-appview:has(.navigation-widget-hidden) {
   left: calc(-1 * var(--compactdocs-tabs-gutter, 73px)) !important;
-  width: calc(100% + var(--compactdocs-tabs-gutter, 73px)) !important;
+  width: calc(100% + var(--compactdocs-tabs-gutter, 73px) + var(--compactdocs-fit-reserve, 0px)) !important;
 }
+/* The overlay scrollbar would sit in the off-screen strip anyway. */
+html.compactdocs-fit-reserve .kix-appview-editor { scrollbar-width: none !important; }
+html.compactdocs-fit-reserve #docs-editor-container { overflow-x: clip !important; }
+/* Docs anchors the "1 of 8" page badge to that off-screen edge. */
+html.compactdocs-fit-reserve .kix-scrollbarwidget { translate: calc(-1 * var(--compactdocs-fit-reserve, 0px)) 0; }
 html.compactdocs-compact-tabs #docs-editor:has(.navigation-widget-hidden) {
   width: var(--compactdocs-editor-width, 100%) !important;
 }
